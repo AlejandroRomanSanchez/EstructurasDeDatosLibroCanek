@@ -124,16 +124,45 @@ public class Lista<T> implements Coleccion<T> {
 	}
     }
 
-    private T buscaNodo(T elemento) {
-	T resultado = null;
+    /**
+     * Este método privado es auxiliar, nos permite encontrar el
+     * primer nodo de la lista cuyo elemento coincida con el 
+     * parámetro; para posteriormente devolver dicho nodo.
+     * @param elemento Es el elemento que deberá tener el nodo que
+     * se devolverá; cabe mencionar que sólo se devuelve la primera
+     * coincidencia.
+     * @return Es el primer nodo que tiene como elemento el parámetro.
+     */
+    private Nodo buscaNodo(T elemento) {
+	// Esta variable hará referencia al resultado.
+	Nodo resultado = null;
+	/* Esta variable recorrerá la lista hasta que encuentre el primer
+	 * nodo cuyo elemento coincida con el parámetro o hasta que haya
+	 * recorrido a la lista en su totalidad.
+	 */
 	Nodo recorredor = cabeza;
 
-	if(recorredor != null) {	    
+	// Si la lista no es vacía, entonces deberemos recorrer a la lista
+	if(recorredor != null) {
+	    /* La primera condición para seguir recorriendo a la lista es 
+	     * que la variable recorredor no haya recorrido toda la 
+	     * lista aún.
+	     */
 	    while(recorredor != null) {
+		/* Si encontramos el primer nodo cuyo elemento coincida
+		 * con el parámetro, entonces hacemos que la variable
+		 * resultado haga referencia a dicho nodo y terminamos 
+		 * el recorrido; o equivalentemente, paramos el actual 
+		 * ciclo while.
+		 */
 		if(recorredor.elemento.equals(elemento)) {
-		    resultado = recorredor.elemento;
+		    resultado = recorredor;
 		    break;
 		}
+		/* Si en esta iteración aún no encontramos la primera
+		 * coincidencia, entonces preparamos el escenario para 
+		 * ahora analizar al siguiente nodo en la siguiente iteración.
+		 */
 		recorredor = recorredor.siguiente;
 	    }
 	}
