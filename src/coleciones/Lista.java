@@ -274,8 +274,14 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método verifica si la lista es vacía.
+     * @return Si la lista es vacía, entonces devuelve true. En caso
+     * contrario, false.
+     */
     public boolean esVacia( ) {
-	return false;
+	// sólo verificamos si la longitud de la lista es cero.
+	return longitud == 0;
     }
 
     @Override
