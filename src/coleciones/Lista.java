@@ -311,8 +311,16 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método elimina todos los elementos de la lista, haciéndola
+     * vacía; es decir, la lista regresa a su estado inicial.
+     */
     public void limpia( ) {
-
+	// La cabeza y el rabo ahora hacen referencia a null
+	cabeza = null;
+	rabo = null;
+	// Ahora la lista no tiene elementos.
+	longitud = 0;
     }
 
     @Override
