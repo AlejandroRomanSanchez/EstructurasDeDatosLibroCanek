@@ -248,8 +248,29 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método verifica si un elemento se encuentra en la lista
+     * @param elemento Es el elemento a veriricar si se encuentra en 
+     * la lista.
+     * @return Si el parámetro se encuentra en la lista, devolvemos 
+     * true; en caso contrario, false
+     */
     public boolean contiene(T elemento) {
-	return false;
+	/* Esta variable hace referencia al primer nodo cuyo elemento
+	 * es igual al parámetro. En caso de que no exista dicho nodo,
+	 * entonces esta variable hace referencia a null.
+	 */	
+	Nodo posibleCoincidencia = this.buscaNodo(elemento);
+	/* Esta variable guarda el resultado booleano de verificar si
+	 * el parámetro está en la lista. Esta verificación se hace en 
+	 * términos de lo referenciado por la variable
+	 * posibleCoincidencia. Si dicha variable hace referencia a null,
+	 * entonces el parámetro no se encuentra en la lista; en caso 
+	 * contrario, significa que sí se encuentra.
+	 */
+	boolean resultado = posibleCoincidencia != null;
+	
+	return resultado;
     }
 
     @Override
