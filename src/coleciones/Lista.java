@@ -334,8 +334,64 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método devuelve una cadena que muestra todos los
+     * elementos de la lista; en orden creciente de sus 
+     * sus posiciones de izquierda a derecha. Aparecen dentro 
+     * de un par de corchetes bien balanceados y separados por 
+     * una coma.
+     * @return Cadena que muestra los elementos de la lista.
+     * Estos elementos aparecen en orden creciente de sus 
+     * posiciones de izquierda a derecha, dentro de una par
+     * de corchetes bien balanceados y separados por una coma.
+     */
     public String toString( ) {
-	return null;
+	/* Esta variable guardará la cadena con los elementos
+	 * de la lista.
+	 */
+	String resultado = "[";
+	/* Esta variable permitirá el recorrido de la lista de
+	 * inicio a fin.
+	 */
+	Nodo recorredor = cabeza; 
+
+	/* Si la lista no es vacía, hacemos que la cadena resultante
+	 * contenga la información de los elementos de la lista.
+	 */
+	if(!this.esVacia( )) {
+	    /* Este ciclo while permite recorrer toda la lista, de
+	     * inicio a fin mediante la variable recorredor
+	     */
+	    while(recorredor != null) {
+		/* Concatenamos la información del elemento del nodo
+		 * que actualmente referencia la variable recorredor
+		 * a la cadena que devolverá este método.
+		 */
+		resultado += " " + recorredor.elemento.toString( );
+		/* Preparamos el escenario para la próxima iteración
+		 * de este ciclo, al hacer que la variable recorredor
+		 * haga referencia al nodo siguiente de lo actualmente
+		 * referencia por dicha variable.
+		 */
+		recorredor = recorredor.siguiente;
+
+		/* Si el siguiente nodo a analizar en este ciclo es
+		 * distinto a null, entonces le concatenamos una coma
+		 * a la cadena que devolverá este método (por cuestiones
+		 * particulares del formato).
+		 */
+		if(recorredor != null) {
+		    resultado += ",";
+		}
+	    }
+	}
+
+	/* Agregamos corchete izquierdo al resultado, por cuestiones 
+	 * particulares del formato
+	 */
+	resultado += " ] ";
+
+	return resultado;
     }
 
     @Override
