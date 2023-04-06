@@ -78,8 +78,24 @@ public class Lista<T> implements Coleccion<T> {
 	}	
     }
 
+    /**
+     * Esta variable hace referencia al primer elemento de la 
+     * lista, si no es vacía. Cuando construimos a la lista
+     * o cuando la lista es vacía, esta variable por defecto 
+     * hace referencia a null.
+     */
     private Nodo cabeza;
+    /**
+     * Esta variable hace referencia al último elemento de la 
+     * lista, si no es vacía. Cuando construimos a la lista
+     * o cuando la lista es vacía, esta variable por defecto 
+     * hace referencia a null.
+     */
     private Nodo rabo;
+    /**
+     * Esta variable guarda el número de elementos que 
+     * acctualmente tiene la lista.
+     */
     private int longitud;
 
     @Override
@@ -285,8 +301,13 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método devuelve el número de elementos que tienes la lista.
+     * @return El número de elementos que actualmente tiene la lista.
+     */
     public int getElementos( ) {
-	return 0;
+	// Sólo devolvemos lo actualmente guardado en longitud.
+	return longitud;
     }
 
     @Override
