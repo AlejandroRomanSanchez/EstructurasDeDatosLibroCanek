@@ -171,8 +171,80 @@ public class Lista<T> implements Coleccion<T> {
     }
     
     @Override
+    /**
+     * Este método elimina el primer nodo cuyo elemento 
+     * coincide con el parámetro.
+     * @param elemento Es el elemento que deberá tener el
+     * nodo que será eliminado de la lista; cabe mencionar 
+     * que dicho nodo deberá ser el primero de la lista que
+     * tenga como elemento al parámetro.
+     */
     public void elimina(T elemento) {
+	/* Obtenemos el primer nodo cuyo elemento sea igual
+	 * al parámetro, y lo referenciamos con esta variable.
+	 */
+	Nodo primeraCoincidencia = this.buscaNodo(elemento);
 
+	/* Este bloque sólo es ejecutado si existe al menos
+	 * un nodo en la lista cuyo elemento sea igual al 
+	 * parámetro.
+	 */
+	if(primeraCoincidencia != null) {
+	    // Es el siguiente de la primera coincidencia.
+	    Nodo nodoSiguiente = primeraCoincidencia.siguiente;
+	    // Es el anterior de la primera coincidencia.
+	    Nodo nodoAnterior = primeraCoincidencia.anterior;
+	    longitud--; // Decrementamos una unidad a longitud.
+	    
+	    if(cabeza == rabo) {
+		/* Si la cabeza y el rabo son el mismo, entonces
+		 * sólo hacemos que cabeza y rabo hagan referencia
+		 * a null
+		 */
+		cabeza = null;
+		rabo = null;
+		return;
+	    }
+	    if(primeraCoincidencia == cabeza) {
+		/* Si la variable primeraCoincidencia hace
+		 * referencia a cabeza, significa que lo
+		 * referenciado actualmente por cabeza será
+		 * eliminado.
+		 */
+		nodoSiguiente.anterior = null;
+		/* Hacemos que cabeza haga referencia al siguiente
+		 * de lo referenciado por primeraCoincidencia.
+		 */
+		cabeza = nodoSiguiente;
+		return;
+	    }
+	    if(primeraCoincidencia == rabo) {
+		/* Si la variable primeraCoincidencia hace
+		 * referencia a rabo, significa que lo
+		 * referenciado actualmente por rabo será
+		 * eliminado.
+		 */
+		nodoAnterior.siguiente = null;
+		/* Hacemos que rabo haga referenacia al anterior
+		 * de lo referenciado por primeraCoincidencia
+		 */
+		rabo = nodoAnterior;
+		return;
+	    } else {
+		/* En cualquier otro caso, significa que un nodo
+		 * será eliminado y dicho no se encuentra ni al inicio
+		 * ni al final de la lista. En este caso, hacemos que 
+		 * el siguiente del anterior de primeraCoincidencia 
+		 * haga referencia al siguiente de primeraCoincidencia
+		 * y hacemos que el siguiente de primeraCoincidencia
+		 * ahora haga referencia al anterior de 
+		 * primeraCoincidencia. 
+		 */
+		nodoAnterior.siguiente = nodoSiguiente;
+		nodoSiguiente.anterior = nodoAnterior;
+		return;
+	    }
+	}
     }
 
     @Override
