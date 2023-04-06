@@ -324,8 +324,13 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método devuelve un iterador de la interfaz Iterador
+     * @return Iterador de la interfaz Iterador
+     */
     public Iterator<T> iterator( ) {
-	return null;
+	// Creamos y devolvemos un iterador de Iterador
+	return new Iterador( );
     }
 
     @Override
