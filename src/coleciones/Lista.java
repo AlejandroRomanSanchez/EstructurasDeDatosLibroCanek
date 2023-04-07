@@ -719,8 +719,26 @@ public class Lista<T> implements Coleccion<T> {
 	return this.rabo.elemento;
     }
 
-    public T get(int i) {
-	return null;
+    /**
+     * Este método devuelve el i-ésimo elemento de la lista. Si i es menor que cero 
+     * o si es mayor o igual que la longitud de la lista, se lanza un excepción.
+     * @return El i-ésimo elemento de la lista, si i es mayor o igual que cero y 
+     * menor que la longitud de la lista.
+     */
+    public T get(int i) throws Exception {
+	/* Si el parámetro es menor que cero o mayor o igual que la longitud de la
+	 * lista, se lanza una excepción.
+	 */
+	if(i < 0 || i >= this.getLongitud( )) {
+	    throw new Exception("El parámetro está fuera del rango.");
+	}
+	/* Si el parámetro es mayor o igual que cero y menor que la longitud de la lista
+	 * obtenemos el i-ésimo nodo de la lista y lo referenciamos por medio de la variable 
+	 * nodoIesimo. Vamos a devolver el elemento de este nodo.
+	 */
+	Nodo nodoIesimo = this.devuelveIesimo(i);
+
+	return nodoIesimo.elemento;
     }
 
     public Lista<T> copia( ) {
