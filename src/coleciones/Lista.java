@@ -517,6 +517,62 @@ public class Lista<T> implements Coleccion<T> {
 	    cabeza = nuevoNodo; // Ahora nuevoNodo será la cabeza de la lista.
 	}
     }
+
+    /**
+     * Este método auxiliar permite devolver el i-ésimo nodo de la lista, donde 
+     * i es el parámetro. Si i es menor o igual que cero, se devuelve la cabeza.
+     * Si i es mayor o igual que la longitud de la lista menos uno, se devuelve 
+     * el rabo de la lista.
+     * @param indice El índice que tendrá el nodo a devolver.
+     * @return El nodo correspondiente de la lista cuyo índice es igual al
+     * parámetro. Si el parámetro es menor o igual que cero, se devuelve la
+     * cabeza. Si el parámetro es maor o igual que la longitud de la lista menos
+     * uno, se devuelve el rabo.
+     */
+    private Nodo devuelveIesimo(int indice) {
+	// Esta variable hará referencia al nodo a devolver.
+	Nodo resultado = cabeza;
+	/* Esta variable permite el recorrido de la lista hasta que nos topemos
+	 * con el nodo cuyo índice es igual al parámetro.
+	 */
+	Nodo recorredor = cabeza;
+	// Esta variable guardará el conteo de cuántos nodos hemos recorrido.
+	int contador = 0; 
+	if(indice <= 0) {
+	    // Si el parámetro es menor o igual que cero, devolvemos la cabeza.
+	    return resultado;
+	}
+	if(indice >= this.getLongitud( ) - 1) {
+	    /* Si el parámetro es mayor o igual que la longitud menos uno,
+	     * devolvemos el rabo.
+	     */
+	    resultado = rabo;
+	    return resultado;
+	}
+
+	/* Si el parámetro es mayor que cero y menor que la longitud de la lista
+	 * menos uno, recorremos los nodos de la lista hasta que lleguemos al nodo
+	 * cuyo índice es igual que el parámetro.
+	 */
+	while(contador <= indice) {
+	    /* Si ya llegamos al nodo cuyo índice es igual al parámetro, entonces
+	     * vamos a devolver el nodo actualmente referenciado por la variable
+	     * recorredor.
+	     */
+	    if(contador == indice) {
+		resultado = recorredor;
+	    }
+
+	    /* Si aún no hemos llegado al nodo deseado, hacemos que ahora la variable
+	     * recorredor haga referencia al nodo siguiente de lo actualmente 
+	     * referenciado por recorredor.
+	     */
+	    recorredor = recorredor.siguiente;
+	    contador++;	// Incrementamos una unidad al conteo de los nodos recorridos
+	}
+	
+	return resultado;
+    }
     
     public void inserta(int indice, T elemento) {
 	if(indice < 1) {
