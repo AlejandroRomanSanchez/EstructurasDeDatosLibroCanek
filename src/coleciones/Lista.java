@@ -573,17 +573,65 @@ public class Lista<T> implements Coleccion<T> {
 	
 	return resultado;
     }
-    
+
+    /**
+     * Este método inserta el segundo parámetro en la posición de la lista correspondiente
+     * al valor del primer parámetro. Si el primer parámetro es menor o igual que cero, 
+     * entonces el segundo parámetro se inserta al inicio de la lista. Mientras que si
+     * el primer parámetro es mayor que la longitud de la lista menos uno, entonces 
+     * insertamos el segundo parámetro al final de la lista.
+     * @param indice El índice en el cuall se inserrtará el segundo parámetro.
+     * @param elemento El elemento que se insertará en la lista en la posición que
+     * corresponde al valor del primer parámetro. Si el primer parámetro es menor o igual 
+     * que cero, insertaremos el elemento al inicio de la lista. Si el primer parámetro
+     * es mayor que la longitud de la lista, entonces insertaremos al elemento al final 
+     * de la lista.
+     */
     public void inserta(int indice, T elemento) {
+	// Creamos un nodo cuyo elemento es el segundo parámetro.
+	Nodo nuevoNodo = new Nodo(elemento);
+	/* Esta variable hace referencia al nodo que se encuentra en la posición
+	 * correspondiente al valor del primer parámetro.
+	 */
+	Nodo nodoEnIndice = this.devuelveIesimo(indice);
+	// Esta variable hace referencia al nodo anterior de nodoEnIndice
+	Nodo nodoAnterior = nodoEnIndice.anterior; 
+
+	/* Si el primer parámetro es menor o igual que cero, sólo agregamos
+	 * el segundo elemento al inicio de la lista.
+	 */
 	if(indice < 1) {
 	    this.agregaInicio(elemento);
 	    return;
 	}
-	if(indice > this.getLongitud( )) {
+	/* Si el primer parámetro es mayor que la longitud de la lista, entonces
+	 * sólo agregamos el segundo parámetro al final de la lista.
+	 */
+	if(indice > this.getLongitud( ) - 1) {
 	    this.agregaFinal(elemento);
 	    return;
 	}
-	
+	/* Si el primer parámetro es mayor que cero y menor que la longitud de
+	 * la lista menos uno.
+	 */
+	if(0 < indice && indice <= this.getLongitud( ) - 1) {
+	    // Decrementamos una unidad al número de elementos de la lista.
+	    longitud++;
+	    /* Hacemos que el anterior del nuevo nodo sea el anterior de
+	     * nodoEnIndice.
+	     */
+	    nuevoNodo.anterior = nodoAnterior;
+	    /* Hacemos que el siguiente del nodo anterior de nodoEnIndice sea
+	     * el nuevo nodo que insertaremos.
+	     */
+	    nodoAnterior.siguiente = nuevoNodo;
+	    // Hacemos que el siguiente del nuevo nodo sea nodoEnIndice
+	    nuevoNodo.siguiente = nodoEnIndice;
+	    /* Hacemos que el anterior de nodoEnIndice sea el nodo que
+	     * insertaremos.
+	     */
+	    nodoEnIndice.anterior = nuevoNodo;
+	}	
     }
 
     public T eliminaPrimero( ) {
