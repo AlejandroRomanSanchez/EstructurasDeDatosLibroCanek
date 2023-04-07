@@ -482,8 +482,15 @@ public class Lista<T> implements Coleccion<T> {
 	return this.getElementos( );
     }
 
+    /**
+     * este método agrega al final de la lista al parámetro. 
+     * @param elemento Es el elemento que se agregará al final de la lista.
+     */
     public void agregaFinal(T elemento) {
-
+	/* Sólo invocamos al método agrega, pues este método también agrega al final de la
+	 * lista.
+	 */
+	this.agrega(elemento);
     }
 
     public void agregaInicio(T elemento) {
