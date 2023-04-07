@@ -691,8 +691,18 @@ public class Lista<T> implements Coleccion<T> {
 	}
     }
 
-    public T getPrimero( ) {
-	return null;
+    /**
+     * Este método devuelve el primer elemento de la lista, si es que la lista es no vacía.
+     * En caso contrario, lanza una excepción.
+     * @return El primer elemento de la lista, si es que la lista es no vacía.
+     */
+    public T getPrimero( ) throws Exception {
+	// Si la lista es vacía, se lanza una excepción.
+	if(this.esVacia( )) {
+	    throw new Exception("La lista es vacía.");
+	}
+	// Si no es vacía, sólo devolvemos la cabeza de la lista
+	return this.cabeza.elemento;
     }
 
     public T getUltimo( ) {
