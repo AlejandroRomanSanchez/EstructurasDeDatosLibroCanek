@@ -517,6 +517,18 @@ public class Lista<T> implements Coleccion<T> {
 	    cabeza = nuevoNodo; // Ahora nuevoNodo será la cabeza de la lista.
 	}
     }
+    
+    public void inserta(int indice, T elemento) {
+	if(indice < 1) {
+	    this.agregaInicio(elemento);
+	    return;
+	}
+	if(indice > this.getLongitud( )) {
+	    this.agregaFinal(elemento);
+	    return;
+	}
+	
+    }
 
     public T eliminaPrimero( ) {
 	return null;
@@ -546,8 +558,72 @@ public class Lista<T> implements Coleccion<T> {
 	return null;
     }
 
+    /**
+     * Este método devuelve el índice del primer nodo cuyo
+     * elemento coincide con el parámetro, si es que dicho 
+     * nodo existe. En caso contrario, devuelve -1
+     * @param elemento Es el elemento que queremos que tenga 
+     * el primer nodo cuyo índice será devuelto, si es que 
+     * existe tal nodo.
+     * @return Es el índice del primer nodo cuyo elemento 
+     * es igual al parámetro, si es que existe tal nodo. En
+     * caso contrario, devuelve -1
+     */
     public int indiceDe(T elemento) {
-	return 0;
+	/* Esta variable guardará el índice del primer nodo
+	 * cuyo elemento es igual al parámetro, si es que 
+	 * existe tal nodo. en caso contrario seguirá 
+	 * guardando el valor entero de -1
+	 */
+	int resultado = -1;
+	/* Esta varable contará el número de elemento que se tuvieron
+	 * que recorrer para llegar al primer nodo cuyo elemento es 
+	 * igual al parámetro.
+	 */
+	int contador = 0;
+	/* Esta variable recorrerá los nodos de la lista, hasta que
+	 * encuentre al primer nodo cuyo elemento es igual al 
+	 * parámetro o hasta que se haya recorrido toda la lista.
+	 */
+	Nodo recorredor = cabeza; 
+
+	/* Si la cabeza no hace referencia a null, entonces recorreremos
+	 * la lista desde el inicio hasta que encontremos al primer nodo
+	 * cuyo elemento es igual al parámetro o hasta que hayamos 
+	 * recorrido toda la lista.
+	 */
+	if(recorredor != null) {
+	    /* Seguimos recorriendo la lista siempre y cuando la variable
+	     * recorredor no haga referencia a null o si el elemento del
+	     * nodo referenciado por recorredor no sea igual al parámetro.
+	     */
+	    while(!recorredor.elemento.equals(elemento)) {		
+		/* Hacemos que recorredor haga referencia al siguiente de lo
+		 * actualmente referenciado por esta variable.
+		 */
+		recorredor = recorredor.siguiente;
+		contador++; // El contador debe ser incrementado por una unidad.
+
+		// Si recorredor ya llegó al rabo de la lista.
+		if(recorredor == null) {
+		    /* Significa que el parámetro no es elemento de la lista.
+		     * Por lo que guardamos el valor de -1 en la variable contador
+		     * y salimos del presente ciclo while.
+		     */
+		    contador = -1;
+		    break;
+		}
+	    }
+	    /* La variable resultado guardará el número de veces que se iteró sobre
+	     * el anterior ciclo while, si es que encontramos al parámetro en la lista;
+	     * o guardará el valor de -1, en caso contrario. En ambos casos, es lo que
+	     * deseamos que este método devuelva. Por  lo que guardamos el valor de 
+	     * conotador en la variable resultado.
+	     */
+	    resultado = contador; 
+	}
+
+	return resultado;
     }
 
     public IteradorLista<T> iteradorLista( ) {
