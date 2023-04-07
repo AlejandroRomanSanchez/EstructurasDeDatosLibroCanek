@@ -483,7 +483,7 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     /**
-     * este método agrega al final de la lista al parámetro. 
+     * Este método agrega al final de la lista al parámetro. 
      * @param elemento Es el elemento que se agregará al final de la lista.
      */
     public void agregaFinal(T elemento) {
@@ -493,8 +493,29 @@ public class Lista<T> implements Coleccion<T> {
 	this.agrega(elemento);
     }
 
+    /**
+     * Este método agrega al inicio de la lista el parámetro.
+     * @param elemento Es el elemento que se agregarár al inicio de la lista.
+     */
     public void agregaInicio(T elemento) {
-
+	// Creamos un nodo cuyo elemento sea el parámetro.
+	Nodo nuevoNodo = new Nodo(elemento); 
+	longitud++; // Incrementamos una unidad al número de elementos de la lista.
+	
+	if(this.esVacia( )) {
+	    /* Si la lista es vacía, solo hacemos que la cabeza y el rabo hagan
+	     * referencia a nuevoNodo.
+	     */
+	    this.cabeza = nuevoNodo;
+	    this.rabo = nuevoNodo;	    
+	} else {
+	    // Si la lista no es vacía.
+	    // Hacemos que el anterior de cabeza haga referencia a nuevoNodo.
+	    cabeza.anterior = nuevoNodo;
+	    // Hacemos que el siguiente de nuevoNodo haga referencia a cabeza.
+	    nuevoNodo.siguiente = cabeza;	    
+	    cabeza = nuevoNodo; // Ahora nuevoNodo será la cabeza de la lista.
+	}
     }
 
     public T eliminaPrimero( ) {
