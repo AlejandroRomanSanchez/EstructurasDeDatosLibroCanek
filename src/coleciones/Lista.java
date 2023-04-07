@@ -634,8 +634,32 @@ public class Lista<T> implements Coleccion<T> {
 	}	
     }
 
-    public T eliminaPrimero( ) {
-	return null;
+    /**
+     * Este método elimina el primer elemento de la lista y lo devuelve. En caso
+     * de que la lista sea vacía, solo se lanza una excepción.
+     */
+    public T eliminaPrimero( ) throws Exception {
+	// Esta variable guardará el nodo a eliminar, si es que la lista no es vacía.
+	Nodo nodoEliminado;
+
+	// Si la lista es vacía, sólo lanza una excepción.
+	if(this.esVacia( )) {
+	    throw new Exception("La lista es vacía");
+	} else {
+	    // Si la lista no es vacía.
+	    // Hacemos que nodoEliminado haga referencia a la actual cabeza.
+	    nodoEliminado = cabeza;
+	    /* Hacemos que el anterior del siguiente de la cabeza actual haga
+	     * referencia a null.
+	     */
+	    cabeza.siguiente.anterior = null;
+	    /* Hacemos que cabeza ahora sea el nodo siguiente del nodo actualmente
+	     * referenciado por cabeza.
+	     */
+	    cabeza = cabeza.siguiente;
+	    longitud--; // Le restamos una unidad al número de elementos de la lista.
+	    return nodoEliminado.elemento;
+	}
     }
 
     public T eliminaUltimo( ) {
