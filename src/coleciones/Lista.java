@@ -471,8 +471,15 @@ public class Lista<T> implements Coleccion<T> {
 	return true;
     }
 
+    /**
+     * Este método devuelve el número de elementos en la lista.
+     * @return El número de elementos de la lista
+     */
     public int getLongitud( ) {
-	return 0;
+	/* Sólo invocamos al método getElementos, pues también devuelve la longitud de la
+	 * lista
+	 */
+	return this.getElementos( );
     }
 
     public void agregaFinal(T elemento) {
