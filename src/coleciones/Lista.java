@@ -705,8 +705,18 @@ public class Lista<T> implements Coleccion<T> {
 	return this.cabeza.elemento;
     }
 
-    public T getUltimo( ) {
-	return null;
+    /** 
+     * Este método devuelve el último elemento de la lista, si es que la lista es no vacía.
+     * En caso contrario, se lanza una excepción.
+     * @return El último elemento de la lista, si es que la lista es no vacía.
+     */
+    public T getUltimo( ) throws Exception {
+	// Si la lista es vacía, se lanza una excepción
+	if(this.esVacia( )) {
+	    throw new Exception("La lista es vacía.");
+	}
+	// Si la lista es no vacía, sólo devolvemos el rabo de la lista.
+	return this.rabo.elemento;
     }
 
     public T get(int i) {
