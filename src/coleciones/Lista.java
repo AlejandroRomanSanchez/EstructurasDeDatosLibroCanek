@@ -637,6 +637,7 @@ public class Lista<T> implements Coleccion<T> {
     /**
      * Este método elimina el primer elemento de la lista y lo devuelve. En caso
      * de que la lista sea vacía, solo se lanza una excepción.
+     * @return El primer elemento de la lista antes de que se eliminara.
      */
     public T eliminaPrimero( ) throws Exception {
 	// Esta variable guardará el nodo a eliminar, si es que la lista no es vacía.
@@ -662,8 +663,32 @@ public class Lista<T> implements Coleccion<T> {
 	}
     }
 
-    public T eliminaUltimo( ) {
-	return null;
+    /**
+     * Este método elimina el último elemento de la lista y lo devuelve, si es que la
+     * lista no es vacía. En caso de que la lista sea vacía se lanza una excepción.
+     * @return El último elemento de la lista antes de que se eliminara..
+     */
+    public T eliminaUltimo( ) throws Exception {
+	/* Esta variable hará referencia al elemento a eliminar, si la lista no es
+	 * vacía.
+	 */
+	Nodo nodoEliminado; 
+
+	// Si la lista es vacía, solo se lanza una excepción.
+	if(this.esVacia( )) {
+	    throw new Exception("La lista es vacía.");
+	} else {
+	    // Si la lista no es vacía.
+	    nodoEliminado = rabo; // Hacemos que nodoEliminado haga referencia al rabo.
+	    // Hacemos que el siguiente del anterior de rabo sea null.
+	    rabo.anterior.siguiente = null;
+	    /* Hacemos que rabo sea ahora el nodo anterior de lo actualmente referenciado
+	     * por la variable rabo.
+	     */
+	    rabo = rabo.anterior;
+	    longitud--; // Decrementamos una unidad al número de elementos de la lista.
+	    return nodoEliminado.elemento;
+	}
     }
 
     public T getPrimero( ) {
