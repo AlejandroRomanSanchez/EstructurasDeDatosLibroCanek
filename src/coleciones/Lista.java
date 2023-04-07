@@ -395,8 +395,80 @@ public class Lista<T> implements Coleccion<T> {
     }
 
     @Override
+    /**
+     * Este método verifica si la lista invocadora y el parámetro son 
+     * iguales; es decir, verifica si el parámetro es distinto del vacío
+     * y si el parámetro es una lista y, en caso de que el parámetro sea
+     * una lista, verifica si tanto la lista invocadora como la lista 
+     * parámetro tienen exactamente los mismos elementos y en el mismo
+     * orden.
+     * @param o Es un objeto de la clase Object del cual queremos verificar 
+     * si es igual a la lista invocadora.
+     * @return Si el parámetro es distinto de null y si también es una lista y,
+     * si en caso de que sea también una lista, tiene los mismos elementos que
+     * la lista invocador y en el mismo orden, entonces este método devuelve
+     * true. En caso contrario, devuelve false.
+     */
     public boolean equals(Object o) {
-	return false;
+	/* Esta variable recorrerá a la lista invocadora del inicio hasta que
+	 * encuentre un elemento distinto al elemento ubicado en la misma 
+	 * posición pero en el parámetro, en caso de que el parámetro también
+	 * sea una lista.
+	 */
+	Nodo recorredorDeInvocador = this.cabeza;
+
+	// Si el parámetro es null o no es una lista, se devuelve false
+	if(o == null || this.getClass( ) != o.getClass( )) {
+	    return false;
+	}
+
+	/* En caso de que el parámetro también sea una lista, le hacemos un
+	 * casteo y lo referenciamos mediante la variable lista. Como la clase
+	 * Lista es genérica, hacer esto obliga al compilador a arrojar una
+	 * advertencia; para suprimir esta advertencia, utilizamos 
+	 * SuppressWarnings.
+	 */	
+	@SuppressWarnings("unchecked")
+	    Lista<T> lista = (Lista<T>) o;
+	/* Esta variable recorrerá a lista, desde el inicio hasta que
+	 * encuentre elementos distintos en la misma posición tanto en 
+	 * lista como en el invocador.
+	 */
+	Nodo recorredorDeParametro = lista.cabeza;	
+	
+	if(this.longitud != lista.longitud) {
+	    /* Si ambas lista no tienen la misma longtud, entonces exite
+	     * al menos un elemento en una que no se encuentra en la otra.
+	     */
+	    return false;
+	} else {
+	    /* Si ambas listas tienen la misma longitud, entonces hacemos un recorrido	    
+	     * de ambas listas, desde la cabeza de ambas hasta que se encuentren dos
+	     * elementos en la misma posición que sean distintos. En caso contrario,
+	     * obviamente recorrerá ambas listas a plenitud. Cabe mencionar, que como 
+	     * ambas listas tienen la misma longitud, basta con verificar si la
+	     * variable recorredor de una de las listas no hace referencia a null.
+	     */
+	    while(recorredorDeInvocador != null) {
+		if(!recorredorDeInvocador.elemento.equals(recorredorDeParametro.elemento)) {
+		    /* Si encuentra dos elementos distintos que están en la misma posición,
+		     * significa que ambas listas son distintas.
+		     */
+		    return false;
+		}
+
+		/* Si en esta iteración, ambos elementos son iguales, entonces hacemos que
+		 * ambos recorredores de las listas hagan referencia a sus respectivos nodos
+		 * siguientes, para poder analizarlos en la siguiente iteración.
+		 */
+		recorredorDeInvocador = recorredorDeInvocador.siguiente;
+		recorredorDeParametro = recorredorDeParametro.siguiente;
+	    }
+	}
+	/* Si cada uno de los elementos en sus respectivas posiciones son iguales, entonces
+	 * significa que ambas lista son iguales.
+	 */
+	return true;
     }
 
     public int getLongitud( ) {
