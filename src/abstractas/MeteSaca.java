@@ -160,17 +160,67 @@ public abstract class MeteSaca<T> {
     }
     
     @Override
+    /**
+     * Este método permite verificar si el MeteSaca invocador es igual al 
+     * parémetro. Para que sean igual ambos deben de ser de la misma clase 
+     * y deben tener exactamente los mismos elementos en el mismo orden.
+     * @return Si el invocador y el parámetro son de la misma clase y si 
+     * tienen los mismos elementos en el mismo orden, entonces este método
+     * devuelve true; false, en caso contrario.
+     */
     public boolean equals(Object o) {
+	/* Debemos verificar que tanto el invocador como el parámetro sean
+	 * instancias de la misma clase. Si no lo son, se concluyen que no
+	 * son iguales.
+	 */
 	if(o == null || this.getClass( ) != o.getClass( )) {
 	    return false;
 	}
 
+	/* Haremos una casteo al parámetro, lo trataremos ahora como una
+	 * estructura de la clase MeteSaca, y suprimimos cualquier advertencia 
+	 * por parte del compilador de Java.
+	 */
 	@SuppressWarnings("Unchecked")
 	    MeteSaca<T> m = (MeteSaca<T>) o;
 
+	// Esta variable permitirá recorrer todos los elementos del invocador.
 	Nodo recorredorDeInvocador =  this.cabeza;
+	// Esta variable permitirá recorrer todos los elementos del parámetro.
 	Nodo recorredorDeParametro = m.cabeza;
+	// Esta variable guardará el número de elementos del invocador.
+	int longitudDeInvocador = this.getLongitud( );
+	// Esta variable guardará el número de elementos del parámetro.
+	int longitudDeParametro = m.getLongitud( );
 
-	return false;
+	/* Si ambas estructuras MeteSaca tienen distinto número de elementos,
+	 * se concluye que no son iguales.
+	 */
+	if(longitudDeInvocador != longitudDeParametro) {
+	    return false;
+	}
+
+	/* Recorremos todos los elementos de ambas estructuras, hasta que encontremos
+	 * dos elementos distintos que están en la misma posición.
+	 */
+	for(int i = 0; i < longitudDeInvocador; i++) {
+	    /* Si encontramos un par de elementos distintos, concluimos que las
+	     * estrcuturas no son iguales.
+	     */
+	    if(!recorredorDeInvocador.elemento.equals(recorredorDeParametro)) {
+		return false;
+	    }
+
+	    /* Ahora ambos recorredores harán referencia a sus respectivos nodos
+	     * siguientes para que en la siguiente iteración, se haga un analisis
+	     * sobre éstos.
+	     */
+	    recorredorDeInvocador = recorredorDeInvocador.siguiente;
+	    recorredorDeParametro = recorredorDeParametro.siguiente;
+	}
+	/* Si todos los elementos fueron iguales, entonces ambas estructuras sí son
+	 * iguales.
+	 */
+	return true;
     }
 }
