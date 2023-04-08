@@ -58,12 +58,33 @@ public class Lista<T> implements Coleccion<T> {
 	    return nodoClon;
 	}
     }
-    
-    private class Iterador implements IteradorLista<T> {
-	public Nodo anterior;
-	public Nodo siguiente;
-	public Iterador( ) {
 
+    /**
+     * Esta clase permite construir los iteradores para los objetos
+     * de la clase Lista.
+     */
+    private class Iterador implements IteradorLista<T> {
+	/**
+	 * Este atributo representa a lo que se encuentra actualmente
+	 * a la izquierda del iterador. 
+	 */
+	public Nodo anterior;
+	/**
+	 * Este atributo representa a lo que se encuentra actualmente
+	 * a la derecha del iterador.
+	 */
+	public Nodo siguiente;
+
+	/**
+	 * Este es el constructor de la clase Iterador.
+	 */
+	public Iterador( ) {
+	    /* El estado inicial del nodo a construir debe ser a
+	     * la derecha de null y a la izquierda del primer nodo
+	     * de la lista.
+	     */
+	    this.anterior = null;
+	    this.siguiente = cabeza;
 	}
 	@Override
 	public boolean hasNext( ) {
