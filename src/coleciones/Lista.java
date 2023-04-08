@@ -50,6 +50,9 @@ public class Lista<T> implements Coleccion<T> {
 	 * @return Un nodo que es clon del invocador.
 	 */
 	public Nodo clone( ) throws CloneNotSupportedException {
+	    /* La siguiente variable hace referencia al clon del
+	     * invocador.
+	     */
 	    Nodo nodoClon = (Nodo) super.clone( );
 
 	    return nodoClon;
@@ -750,9 +753,28 @@ public class Lista<T> implements Coleccion<T> {
 
 	return nodoIesimo.elemento;
     }
-    
-    public Lista<T> copia( ) {
-	return null;
+
+    /**
+     * Este método permite clonar la lista invocadora.
+     * @return Una lista que es la copia de la lsita invocadora
+     */
+    public Lista<T> copia( ) throws CloneNotSupportedException {
+	// En esta variable construiremos la copia del invocador.
+	Lista<T> copia = new Lista<T>( );
+	/* En esta variable haremos referencia a los nodos de la lista invocadora que
+	 * iremos copiando.
+	 */
+	Nodo nodoClonado; 
+
+	// Recorremos la lista invocadora para poder copiar cada uno de sus nodos
+	for(int i = 0; i < this.getLongitud( ); i++) {
+	    // Copiamos el nodo i-ésimo de la lista invocadora.
+	    nodoClonado = this.devuelveIesimo(i).clone( );
+	    // Agregamos el elemento del nodo copiado.
+	    this.agrega(nodoClonado.elemento);
+	}
+
+	return copia;
     }
     
     public Lista<T> reversa( ) {
