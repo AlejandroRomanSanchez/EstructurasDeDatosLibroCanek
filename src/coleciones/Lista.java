@@ -874,7 +874,11 @@ public class Lista<T> implements Coleccion<T> {
 	return resultado;
     }
 
+    /**
+     * Este método devuelve un iterador para la lista.
+     * @return Iterador para la lista.
+     */
     public IteradorLista<T> iteradorLista( ) {
-	return null;
+	return new Iterador( );
     }
 }
