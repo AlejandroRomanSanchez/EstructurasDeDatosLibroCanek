@@ -776,9 +776,34 @@ public class Lista<T> implements Coleccion<T> {
 
 	return copia;
     }
-    
+
+    /**
+     * Este método permite obtener una nueva lista tal que tenga exactamente los
+     * mismos elementos de la lista invocadora pero en el orden inverso con respecto 
+     * a sus índices.
+     * @return Una lista copia tal que tiene exactamente los mismos elementos de la
+     * lista invocadora pero en orden reverso con respecto a sus índices.
+     */
     public Lista<T> reversa( ) {
-	return null;
+	// En esta variable construiremos la lista reversa
+	Lista<T> copia = new Lista<T>( ); 
+	/* En esta variable haremos referencia a los nodos que vayamos clonando cuando
+	 * estemos recorriendo la lista invocadora.
+	 */
+	Nodo nodoClonado; 
+
+	// Recorremos la lista invocadora desde su cabeza a su rabo, si no es vacía.
+	for(int i = 0; i < this.getLongitud( ); i++) {
+	    // Clonamos el i-ésimo nodo de la lista invocadora.
+	    nodoClonado = this.devuelveIesimo(i);
+	    /* Agregamos el nodo clonado al inicio de la copia para que al final
+	     * obtengamos todos los elementos de la lista invocadora en su orden 
+	     * inverso.
+	     */
+	    this.agregaInicio(nodoClonado.elemento); 
+	}
+
+	return copia;
     }
 
     /**
