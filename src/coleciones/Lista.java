@@ -213,8 +213,13 @@ public class Lista<T> implements Coleccion<T> {
 	    this.siguiente  = cabeza;
 	}
 	@Override
+	/**
+	 * Este método mueve el iterador al final de la lista.
+	 */
 	public void end( ) {
-
+	    // Movemos el iterador a la derecha del rabo de la lista.
+	    this.siguiente = null;
+	    this.anterior = rabo;
 	}	
     }
 
