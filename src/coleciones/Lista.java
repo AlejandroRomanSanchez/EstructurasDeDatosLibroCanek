@@ -14,7 +14,7 @@ public class Lista<T> implements Coleccion<T> {
      * nodos para la lista doblemente ligada. Cada nodo
      * consta de un elemento, un nodo siguiente y otro anterio
      */
-    private class Nodo {
+    private class Nodo implements Cloneable {
 	/**
 	 * Este atributo hace referencia al elemento que guarda 
 	 * el nodo.
@@ -43,6 +43,16 @@ public class Lista<T> implements Coleccion<T> {
 	 */
 	public Nodo(T elemento) {
 	    this.elemento = elemento;
+	}
+
+	/**
+	 * Este método permite clonar el nodo invocador.
+	 * @return Un nodo que es clon del invocador.
+	 */
+	public Nodo clone( ) throws CloneNotSupportedException {
+	    Nodo nodoClon = (Nodo) super.clone( );
+
+	    return nodoClon;
 	}
     }
     
@@ -740,7 +750,7 @@ public class Lista<T> implements Coleccion<T> {
 
 	return nodoIesimo.elemento;
     }
-
+    
     public Lista<T> copia( ) {
 	return null;
     }
