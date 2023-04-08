@@ -123,8 +123,14 @@ public abstract class MeteSaca<T> {
 	return this.cabeza.elemento;
     }
 
+    /** Este método verifica si la estructura tiene o no elementos.
+     * @return Si tiene al menos un elemento, devuelve true; false, en caso contrario.
+     */
     public boolean esVacia( ) {
-	return false;
+	/* Si la cabeza de la estructura es null, entonces es vacía; en caso contrario,
+	 * no lo es.
+	 */
+	return this.cabeza == null;
     }
 
     @Override
