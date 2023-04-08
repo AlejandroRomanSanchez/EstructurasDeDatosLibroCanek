@@ -98,8 +98,29 @@ public abstract class MeteSaca<T> {
 	return elementoEliminado;
     }
 
+    /**
+     * Este método permite devolver el primer elemento almacenado en la 
+     * estructura.
+     * @return El primer elemento almacenado en la estructura, si no es
+     * vacía.
+     */
     public T mira( ) {
-	return null;
+	/* Si la estructura es vacía, lanzaremos una excepción. Como la
+	 * firma de este método no declara el lanzamiento de una excepción,
+	 * debemos de manejarla por medio de un bloque catch-try
+	 */
+	try {
+	    // Si la estructura es vacía, lanzamos una excepción.
+	    if(this.cabeza == null) {
+		throw new Exception( );
+	    }
+	} catch(Exception excepcion) {
+	    System.out.println("Esta estructura no tiene elementos.");
+	}
+	/* Si la estructura no es vacía, devolvemos el elemento del primer
+	 * nodo.
+	 */
+	return this.cabeza.elemento;
     }
 
     public boolean esVacia( ) {
