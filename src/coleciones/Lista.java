@@ -204,8 +204,13 @@ public class Lista<T> implements Coleccion<T> {
 	    return this.siguiente.elemento;
 	}
 	@Override
+	/**
+	 * Este método mueve el iterador al inicio de la lista.
+	 */
 	public void start( ) {
-	    
+	    // Movemos el iterador a la izquierda de la cabeza.
+	    this.anterior = null;
+	    this.siguiente  = cabeza;
 	}
 	@Override
 	public void end( ) {
