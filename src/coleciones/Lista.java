@@ -86,10 +86,22 @@ public class Lista<T> implements Coleccion<T> {
 	    this.anterior = null;
 	    this.siguiente = cabeza;
 	}
+	
 	@Override
+	/**
+	 * Este método verifica si al lado derecho de un iterador aún 
+	 * existe un nodo distinto de null.
+	 * @return Si existe un nodo a la derecha del iterador, se 
+	 * devuelve true; false, en caso contrario.
+	 */
 	public boolean hasNext( ) {
-	    return false;
+	    /* Si existe un nodo distinto de null a la derecha del 
+	     * iterador, entonces el atributo siguiente del iterador
+	     * no debe hacer referencia a null.
+	     */
+	    return this.siguiente != null;
 	}
+	
 	@Override
 	public T next( ) {
 	    return null;
