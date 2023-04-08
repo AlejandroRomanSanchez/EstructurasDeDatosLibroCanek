@@ -103,9 +103,52 @@ public class Lista<T> implements Coleccion<T> {
 	}
 	
 	@Override
+	/**
+	 * Este método hace que se mueva a la derecha de donde se 
+	 * encuentra actualmente y devuelve el elemento del nodo 
+	 * que está a su izquierda de su nueva posición obtenida.
+	 * @return El elemento del nodo que se encuentra a la ziquierda
+	 * después de haber avanzado una posición a la derecha.
+	 */
 	public T next( ) {
-	    return null;
+	    /* Como existe la posibilidad de que el nodo derecho de la
+	     * posición actual del iterador sea null y como la firma de 
+	     * next en la interfaz Iterator no lanza una excepción, 
+	     * entonces debemos de poder manipular esta posible excepción
+	     * por medio de una bloque try-catch.
+	     */
+	    try {
+		/* Esta variable hará referencia al nodo siguiente actual
+		 * del iterador, si es que dicho nodo es distinto de null.
+		 */
+		Nodo nodoSiguiente;
+		/* Si el nodo siguiente actual es null, sólo lanzamos una
+		 * excepción.
+		 */
+		if(this.siguiente == null) {
+		    throw new Exception( );
+		}
+
+		/* Hacemos que la variable nodoSiguiente haga referencia
+		 * al nodo siguiente con el que comenzó el iterador.
+		 */
+		nodoSiguiente = this.siguiente;
+		/* Hacemos que ahora el nodo anterior del iterador sea
+		 * nodoSiguiente
+		 */
+		this.anterior = nodoSiguiente;
+		/* Hacemos que ahora el nodo siguiente del iterador ahora
+		 * sea lo referenciado por el atributo siguiente de 
+		 * nodoSiguiente.
+		 */
+		this.siguiente = nodoSiguiente.siguiente;		
+	    } catch(Exception excepcion) {
+		System.out.println("El siguiente del iterador es vacío.");
+	    }
+
+	    return this.anterior.elemento;
 	}
+	
 	@Override
 	public boolean hasPrevious( ) {
 	    return false;
