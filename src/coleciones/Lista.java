@@ -150,9 +150,19 @@ public class Lista<T> implements Coleccion<T> {
 	}
 	
 	@Override
+	/**
+	 * Este método verifica si el iterador tiene un nodo distinto de null
+	 * a su izquierda.
+	 * @return Si el actual nodo anterior del iterador es distinto de null,
+	 * se devuelve true; false, en caso contrario.
+	 */
 	public boolean hasPrevious( ) {
-	    return false;
+	    /* Si el iterador tiene un nodo anterior, significa que dicho nodo
+	     * debe ser distinto de null.
+	     */
+	    return this.anterior != null;
 	}
+	
 	@Override
 	public T previous( ) {
 	    return null;
