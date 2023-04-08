@@ -133,8 +133,44 @@ public abstract class MeteSaca<T> {
 	return this.cabeza == null;
     }
 
+    /**
+     * Este método es auxiliar y permite obtener el número de elementos que tiene una 
+     * estructura del tipo MeteSaca.
+     * @return El número de elementos de la estrcutura MeteSaca.
+     */
+    private int getLongitud( ) {
+	// Esta variable guardará el número de elementos de la estructura.
+	int resultado = 0;
+	// Esta variable permitirá recorrer en su totalidad a la estructura.
+	Nodo recorredor = this.cabeza; 
+
+	// Vamos a recorrer toda la estructura, de inicio a fin, si no es vacía.
+	while(recorredor != null) {
+	    /* Cada iteración realizzada significa que se tiene otro elemento más en
+	     * estructura, por lo que le sumamos una unidad al resultado.
+	     */
+	    resultado++;
+	    /* Ahora recorredor hará referencia a su nodo siguiente para poder
+	     * realizar la siguiente iteración sobre este nuevo nodo.
+	     */
+	    recorredor = recorredor.siguiente;
+	}
+
+	return resultado;
+    }
+    
     @Override
     public boolean equals(Object o) {
+	if(o == null || this.getClass( ) != o.getClass( )) {
+	    return false;
+	}
+
+	@SuppressWarnings("Unchecked")
+	    MeteSaca<T> m = (MeteSaca<T>) o;
+
+	Nodo recorredorDeInvocador =  this.cabeza;
+	Nodo recorredorDeParametro = m.cabeza;
+
 	return false;
     }
 }
