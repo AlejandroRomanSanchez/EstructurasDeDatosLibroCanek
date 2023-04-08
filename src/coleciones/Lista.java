@@ -164,8 +164,44 @@ public class Lista<T> implements Coleccion<T> {
 	}
 	
 	@Override
+	/**
+	 * Este método hace que el iterador se mueva a la izquierda y se devuelva 
+	 * el elemento del nodo anterior que tenía este iterador cuando se comenzó 
+	 * la llamada de este método.
+	 * @return El elemento del nodo anterior que tenía el iterador cuando este 
+	 * método fue llamado.
+	 */
 	public T previous( ) {
-	    return null;
+	    /* Si el nodo anterior del iterador es null, se lanza una excepción.
+	     * Como en la interfaz IteradorLista la firma del método previous no
+	     * lanza excepción alguna, debemos de manejar esta excepción por medio
+	     * de un bloque try-catch
+	     */
+	    try {
+		/* Si el nodo anterior del iterador es null, sólo se lanza una
+		 * excepción.
+		 */
+		if(this.anterior == null) {
+		    throw new Exception( );
+		}
+		/* Si el nodo anterior de iterador cuando este método fue llamado
+		 * es distinto de null, entonces esta variable hará referencia a dicho
+		 * nodo.
+		 */
+		Nodo nodoAnterior = this.anterior;
+		// Ahora el siguiente de iterador hará referencia de nodoAnterior
+		this.siguiente = nodoAnterior;
+		/* Hacemos que el anterior de nodoAnterior ahora haga referencia al
+		 * nodo anterior que tenía el iterador cuando este método fue llamado.
+		 */
+		nodoAnterior.anterior = this.anterior;
+	    } catch(Exception excepcion) {
+		System.out.println("El anterior del iterador es vacío.");
+	    }
+	    /* Devolvemos el elemento del nodo siguiente del iterador que actualmente
+	     * está siendo referenciado; este nodo es nodoAnterior.
+	     */
+	    return this.siguiente.elemento;
 	}
 	@Override
 	public void start( ) {
