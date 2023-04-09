@@ -51,7 +51,35 @@ public class Pila<T> extends MeteSaca<T> {
     }
 
     @Override
+    /**
+     * Este método devuelve el contenido de la pila en una cadena. Si es
+     * vacía, se devuelve la cadena sin contenido alguno. Si la pila no es
+     * vacía, cada elemento tendrá su línea reservada, y el elemento de 
+     * hasta arriba indica el tope de la pila y el de hasta abajo el fonfo.
+     * @return Cadena con el contenido de la pila. Cada línea está reservada 
+     * para un elemento, el elemento que aparece hasta arriba es el tope, y 
+     * el de abajo ell fondo.
+     */
     public String toString( ) {
-	return null;
+	/* En esta variable construiremos la cadena con el contenido de la
+	 * pila.
+	 */
+	String resultado = "";
+	/* Esta variable permitirá el recorrido de toda la pila, de inicio
+	 * hasta el fin.
+	 */
+	Nodo recorredor = this.cabeza; 
+
+	// Recorremos toda la pila, desde el tope hasta el fondo de la pila.
+	while(recorredor != null) {
+	    // Agregamos el elemento en la cadena
+	    resultado += recorredor.elemento.toString( ) + "\n";
+	    /* La variable recorredor ahora hará referencia a su nodo
+	     * siguiente para poder iterar sobre este último.
+	     */
+	    recorredor = recorredor.siguiente;
+	}
+
+	return resultado;	
     }
 }
