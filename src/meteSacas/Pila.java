@@ -2,11 +2,15 @@ package meteSacas;
 
 import abstractas.MeteSaca;
 
+/**
+ * Esta clase permite construir y manipular pilas.
+ */
 public class Pila<T> extends MeteSaca<T> {
     @Override
     /**
      * Este método agrega elementos la pila, sólo se puede agregar al inicio 
      * de la misma.
+     * @param elemento El elemento a agregar en la pila
      */
     public void mete(T elemento) {
 	/* Si el parámetro es null, lanzamos una excepción, pues no daremos
