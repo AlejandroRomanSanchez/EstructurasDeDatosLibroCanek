@@ -51,7 +51,36 @@ public class Cola<T> extends MeteSaca<T> {
     }
 
     @Override
+    /**
+     * Este método devuelve una cadena con el contenido de todos los 
+     * elementos de la cola.
+     * @return Una cadena en el que se describe el contenido de la
+     * cola. Comienza con el primer elemento que llegó y termina con
+     * el último elemento que llegó.
+     */
     public String toString( ) {
-	return null;
+	/* En esta variable se construirá la cadena en el que se indican
+	 * todos los elementos de la cola
+	 */
+	String resultado = "";
+	// Esta variable nos permitirá recorrer la cola de inicio a fin.
+	Nodo recorredor = this.cabeza; 
+
+	/* Recorremos toda la cola, comenzando con el primer elemento que
+	 * llegó y terminando con el último elemento que llegó.
+	 */
+	while(recorredor != null) {
+	    /* Agregamos en el resultado el elemento actual de la cola en
+	     *  la que estamos iterando
+	     */
+	    resultado  += recorredor.elemento.toString( ) + " ";
+	    /* Ahora recorredor hará referencia al nodo siguiente de lo
+	     * actualmente referenciado por recorredor para poder trabajar
+	     * en la siguiente iteración con dicho nuevo nodo.
+	     */
+	    recorredor = recorredor.siguiente;
+	}
+
+	return resultado;
     }
 }
