@@ -11,15 +11,20 @@ import java.util.Comparator;
 public class EnteroComparable implements Comparable<EnteroComparable> {
     private int entero; // Este es el entero que representa el objeto de esta clase
 
-    /*+
-     * Este es eñ contructor de la clase EnteroComparable
+    /**
+     * Este es el contructor de la clase EnteroComparable
      * @param entero Es el entero que representa el objeto a crear
      */
     public EnteroComparable(int entero) {
 	this.entero = entero; // El parámetro es el entero que representa el objeto a crear
     }
 
+    /**
+     * Este método devuelve el entero que representa el objeto
+     * @return Es el entero que representa el objeto
+     */
     public int getEntero( ) {
+	// Solamente devolvemos el entero representado por el objeto
 	return this.entero;
     }
     
