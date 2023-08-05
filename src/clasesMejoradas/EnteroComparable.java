@@ -36,6 +36,7 @@ public class EnteroComparable implements Comparable<EnteroComparable> {
      * atributo entero del llamador es mayor que el atributo entero del parámetro, se devuelve
      * 1
      */
+    @Override
     public int compareTo(EnteroComparable enteroComparable) {
 	int enteroLlamador = this.getEntero( ); // Este es el atributo entero del objeto llamador
 	int enteroParametro = enteroComparable.getEntero( ); // Este es el atributo entero del objeto parámetro
@@ -56,5 +57,20 @@ public class EnteroComparable implements Comparable<EnteroComparable> {
 	 * que el objeto parámetro
 	 */
 	return 1;
+    }
+
+    /**
+     * Este método devuelve una cadena con el atributo entero del objeto invocador
+     * @return Una cadena que indica el entero equivalente al objeto invocador
+     */
+    public String toString( ) {
+	// Esta variable hace referencia al integer equivalente al objeto invocador
+	Integer integerEquivalente = new Integer(this.getEntero( ));
+	/* Obtenemos la cadena con el entero equivalente al objeto invocador por medio de aplicar el método
+	 * toString( ) de la clase Integer al integer equivalente al invocador
+	 */
+	String cadenaResultante = integerEquivalente.toString( ); 
+
+	return cadenaResultante;
     }
 }
