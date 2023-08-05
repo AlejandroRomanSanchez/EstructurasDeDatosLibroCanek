@@ -18,10 +18,10 @@ public class PruebaEnteroComparable {
 	EnteroComparable entero2 = new EnteroComparable(11);
 	EnteroComparable entero3 = new EnteroComparable(11);
 
-	// Probamos el método getEntero( ) de la clase EnteroComparable
-	System.out.println("El entero1 es: " + entero1.getEntero( ));
-	System.out.println("El entero2 es: " + entero2.getEntero( ));
-	System.out.println("El entero3 es: " + entero3.getEntero( ));
+	// Probamos el método toString( ) de la clase EnteroComparable
+	System.out.println("\nEl entero1 es: " + entero1.toString( ));
+	System.out.println("El entero2 es: " + entero2.toString( ));
+	System.out.println("El entero3 es: " + entero3.toString( ));
 
 	// Probamos el método compareTo( ) de la clase EnteroComparable
 	System.out.println("\nEl entero1 es menor que el entero2: " + entero1.compareTo(entero2));
