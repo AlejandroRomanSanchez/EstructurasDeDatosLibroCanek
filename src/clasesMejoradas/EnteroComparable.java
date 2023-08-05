@@ -27,8 +27,34 @@ public class EnteroComparable implements Comparable<EnteroComparable> {
 	// Solamente devolvemos el entero representado por el objeto
 	return this.entero;
     }
-    
+
+    /**
+     * Este método sobre-escrito compara el objeto con otro objeto de la clase EnteroComparable
+     * @param enteroComparable Un objeto de la clase EnteroComparable
+     * @return Si el atributo entero del objeto llamador es menor que el atributo entero del
+     * objeto parámetro, se devuelve -1. Si estos atributos son iguales, se devuelve 0. Si el
+     * atributo entero del llamador es mayor que el atributo entero del parámetro, se devuelve
+     * 1
+     */
     public int compareTo(EnteroComparable enteroComparable) {
-	return 0;
+	int enteroLlamador = this.getEntero( ); // Este es el atributo entero del objeto llamador
+	int enteroParametro = enteroComparable.getEntero( ); // Este es el atributo entero del objeto parámetro
+
+	/* Si el entero del llamador es menor que el entero del parámetro, entonces el objeto llamador es menor
+	 * que el objeto parámetro
+	 */
+	if(enteroLlamador < enteroParametro) {
+	    return -1;
+	}
+
+	// Si el entero del llamador es igual al entero del parámetro, entonces ambos objetos son iguales
+	if(enteroLlamador == enteroParametro) {
+	    return 0;
+	}
+
+	/* Si el entero del llamador es mayor que el entero del parámetro, entonces el objeto llamador es mayor
+	 * que el objeto parámetro
+	 */
+	return 1;
     }
 }
