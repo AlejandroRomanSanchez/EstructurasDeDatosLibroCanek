@@ -1,7 +1,6 @@
 package pruebas;
 
 import clasesMejoradas.Arreglo;
-import clasesMejoradas.EnteroComparable;
 import java.util.Comparator;
 
 /**
@@ -74,34 +73,31 @@ public class PruebaArreglo {
 	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 1, 3);
 	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
 
-	// Comienzan las pruebas para el método búsquedaBinaria(arreglo, elemento, comparador)	
+	// Comienzan las pruebas para el método búsquedaBinaria(arreglo, elemento)	
 	Integer[ ] enterosOrdenados = {12, 14, 21, 33, 50, 50, 53, 53, 53, 53};
 	Integer elementoABuscar;
 	String cadenaDeArregloOrdenado = Arreglo.construyeCadenaDeArreglo(enterosOrdenados);
 
-	System.out.println("Comienza las pruebas para el método busquedaBinaria");
+	System.out.println("Comienzan las pruebas para el método busquedaBinaria");
 	
 	try {
 	    System.out.println("Índice que guardar a la cadena 'Java' en null:"
-			       + Arreglo.busquedaBinaria(null, "Java", (a, b) -> a.compareTo(b)));
+			       + Arreglo.busquedaBinaria(null, "Java"));
 	} catch(NullPointerException excepcion) {
 	    System.out.println("Excepción por ingresar null como primer parámetro\n");
 	}
 	    
 	System.out.println("Arrreglo ordenado con enteros: " + cadenaDeArregloOrdenado);
 	System.out.println("Índice que guarda el número 6 en el arreglo ordenado: "
-			   + Arreglo.busquedaBinaria(enterosOrdenados, 6,
-						     (a, b) -> a.compareTo(b)) + "\n");
+			   + Arreglo.busquedaBinaria(enterosOrdenados, 6));
 
 	System.out.println("Índice que guarda el número 33 en el arreglo ordenado: "
-			   + Arreglo.busquedaBinaria(enterosOrdenados, 33,
-						     (a, b) -> a.compareTo(b)) + "\n");
+			   + Arreglo.busquedaBinaria(enterosOrdenados, 33));
 
 	for(int i = 0; i < enterosOrdenados.length; i++) {
 	    elementoABuscar = enterosOrdenados[i];
 	    System.out.println("Índice que guarda el número " + elementoABuscar + " en el arreglo ordenado: "
-			       + Arreglo.busquedaBinaria(enterosOrdenados, elementoABuscar,
-							 (a, b) -> a.compareTo(b)) + "\n");	    
+			       + Arreglo.busquedaBinaria(enterosOrdenados, elementoABuscar));
 	}
     }
 }
