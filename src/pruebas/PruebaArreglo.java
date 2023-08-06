@@ -2,6 +2,7 @@ package pruebas;
 
 import clasesMejoradas.Arreglo;
 import clasesMejoradas.EnteroComparable;
+import java.util.Comparator;
 
 /**
  * Esta clase sirve para hacer preubas a la clase Arreglo
@@ -13,23 +14,14 @@ public class PruebaArreglo {
     /**
      * Este es el método main de la clase. En este método hacemos las pruebas para la clase Arreglo
      */
-    public static void main(String[ ] args) throws Exception {
-	/* Creamos los enteros comparables que vamos a guardar en el arreglo para las pruebas del método
-	 * creaSubArregloDe( )
-	 */
-	EnteroComparable entero1 = new EnteroComparable(4);
-	EnteroComparable entero2 = new EnteroComparable(0);
-	EnteroComparable entero3 = new EnteroComparable(2);
-	EnteroComparable entero4 = new EnteroComparable(1);
-	EnteroComparable entero5 = new EnteroComparable(5);
-
+    public static void main(String[ ] args) {
 	// Creamos los arreglo que vamos a usar en las pruebas
-	EnteroComparable[ ] arregloVacio = { }; // Un arreglo sin elementos que usaremos para las pruebas
+	Integer[ ] arregloVacio = { }; // Un arreglo sin elementos que usaremos para las pruebas
 	// Arreglo de enteros que usaremos para las pruebas
-	EnteroComparable[ ] arregloEnteros = {entero1, entero2, entero3, entero4, entero5};
+	Integer[ ] arregloEnteros = {4, 0, 2, 1, 5};
 	// En esta variable se guardarán los sub-arreglos creados conforme vayan siendo creados
-	Comparable[ ] subArreglo;
-
+	Object[ ] subArreglo;
+	
 	/* Comienza pruebas para el método imprimeArreglo( ) aplicado a null, el arreglo vacío y un arreglo con
 	 * enteros comparables
 	 */
@@ -44,42 +36,34 @@ public class PruebaArreglo {
 	System.out.println("Pruebas para el método creaSubArreglo:\n");
 	try {
 	    Arreglo.creaSubArregloDe(null, 4, 1);
-	} catch(Exception excepcion) {
+	} catch(NullPointerException excepcion) {
 	    System.out.println("Excepción por tener el primer parámetro como null\n");
 	}
+
+	System.out.println("Sub-arreglo de un arreglo vacío:" );
+	subArreglo = Arreglo.creaSubArregloDe(arregloVacio, 4, 9);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
 	
-	try {
-	    Arreglo.creaSubArregloDe(arregloVacio, 4, 9);
-	} catch(Exception excepcion) {
-	    System.out.println("Excepción por tener un arreglo vacío como parámetro\n");
-	}
+	System.out.println("Los siguientes sub-arreglos son para el arreglo: "
+			   + Arreglo.construyeCadenaDeArreglo(arregloEnteros) + "\n");
+	System.out.println("Sub-arreglo que comeinza en el índice -1 y termina en el índice 4");
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, -1, 4);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
 
-	try {
-	    Arreglo.creaSubArregloDe(arregloEnteros, -1, 4);
-	} catch(Exception excepcion) {
-	    System.out.println("Excepción por poner el extremo inferior como un índice negativo\n");
-	}
+	System.out.println("Sub-arreglo que comienza en el índice 2 y termina en el índice 5");
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 2, 5);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
 
-	try {
-	    Arreglo.creaSubArregloDe(arregloEnteros, 2, 5);
-	} catch(Exception excepcion) {
-	    System.out.println("Excepcion por poner el extremo superior igual a la longitud del arreglo\n");
-	}
-
-	try {
-	    Arreglo.creaSubArregloDe(arregloEnteros, 3, 9);
-	} catch(Exception excepcion) {
-	    System.out.println("Excepción por poner el extremo superior mayor que la longitud del arreglo\n");
-	}
-
-	try {
-	    Arreglo.creaSubArregloDe(arregloEnteros, 4, 2);
-	} catch(Exception excepcion) {
-	    System.out.println("Excepción por poner los extremos del sub-arreglo a crear al revés\n");
-	}
+	System.out.println("Sub-arreglo que comienza en el índice 3 y termina en el índice 9");
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 3, 9);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
+   
+	System.out.println("Sub-arreglo que comienza con el índice 4 y termina en el índice 2:");
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 4, 2);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
 
 	System.out.println("Sub-arreglo que comienza en el índice 2 y termina en ese mismo índice:");
-	subArreglo =  Arreglo.creaSubArregloDe(arregloEnteros, 2, 2);
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 2, 2);
 	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
 
 	System.out.println("Sub-arreglo que comienza en el índice 0 y termina en el índice 1:");
@@ -89,5 +73,35 @@ public class PruebaArreglo {
 	System.out.println("Sub-arreglo que comienza en el índice 1 y termina en el índice 3:");
 	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 1, 3);
 	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
+
+	// Comienzan las pruebas para el método búsquedaBinaria(arreglo, elemento, comparador)	
+	Integer[ ] enterosOrdenados = {12, 14, 21, 33, 50, 50, 53, 53, 53, 53};
+	Integer elementoABuscar;
+	String cadenaDeArregloOrdenado = Arreglo.construyeCadenaDeArreglo(enterosOrdenados);
+
+	System.out.println("Comienza las pruebas para el método busquedaBinaria");
+	
+	try {
+	    System.out.println("Índice que guardar a la cadena 'Java' en null:"
+			       + Arreglo.busquedaBinaria(null, "Java", (a, b) -> a.compareTo(b)));
+	} catch(NullPointerException excepcion) {
+	    System.out.println("Excepción por ingresar null como primer parámetro\n");
+	}
+	    
+	System.out.println("Arrreglo ordenado con enteros: " + cadenaDeArregloOrdenado);
+	System.out.println("Índice que guarda el número 6 en el arreglo ordenado: "
+			   + Arreglo.busquedaBinaria(enterosOrdenados, 6,
+						     (a, b) -> a.compareTo(b)) + "\n");
+
+	System.out.println("Índice que guarda el número 33 en el arreglo ordenado: "
+			   + Arreglo.busquedaBinaria(enterosOrdenados, 33,
+						     (a, b) -> a.compareTo(b)) + "\n");
+
+	for(int i = 0; i < enterosOrdenados.length; i++) {
+	    elementoABuscar = enterosOrdenados[i];
+	    System.out.println("Índice que guarda el número " + elementoABuscar + " en el arreglo ordenado: "
+			       + Arreglo.busquedaBinaria(enterosOrdenados, elementoABuscar,
+							 (a, b) -> a.compareTo(b)) + "\n");	    
+	}
     }
 }
