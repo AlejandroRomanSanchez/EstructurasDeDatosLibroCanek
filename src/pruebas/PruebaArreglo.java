@@ -1,6 +1,7 @@
 package pruebas;
 
 import clasesMejoradas.Arreglo;
+import clasesMejoradas.EnteroComparable;
 
 /**
  * Esta clase sirve para hacer preubas a la clase Arreglo
@@ -12,17 +13,35 @@ public class PruebaArreglo {
     /**
      * Este es el método main de la clase. En este método hacemos las pruebas para la clase Arreglo
      */
-    public static void main(String[ ] args) {
-	Integer[ ] arregloVacio = { }; // Un arreglo sin elementos que usaremos para las pruebas
-	Integer[ ] arregloEnteros = {4, 0, 2, 1, 5}; // Arreglo de enteros que usaremos para las pruebas
-
-	/* Comienza pruebas para el método imprimeArreglo aplicado a null, el arreglo vacío y un arreglo con
-	 * enteros
+    public static void main(String[ ] args) throws Exception {
+	/* Creamos los enteros comparables que vamos a guardar en el arreglo para las pruebas del método
+	 * creaSubArregloDe( )
 	 */
+	EnteroComparable entero1 = new EnteroComparable(4);
+	EnteroComparable entero2 = new EnteroComparable(0);
+	EnteroComparable entero3 = new EnteroComparable(2);
+	EnteroComparable entero4 = new EnteroComparable(1);
+	EnteroComparable entero5 = new EnteroComparable(5);
+
+	// Creamos los arreglo que vamos a usar en las pruebas
+	EnteroComparable[ ] arregloVacio = { }; // Un arreglo sin elementos que usaremos para las pruebas
+	// Arreglo de enteros que usaremos para las pruebas
+	EnteroComparable[ ] arregloEnteros = {entero1, entero2, entero3, entero4, entero5};
+	// En esta variable se guardarán los sub-arreglos creados conforme vayan siendo creados
+	Comparable[ ] subArreglo;
+
+	/* Comienza pruebas para el método imprimeArreglo( ) aplicado a null, el arreglo vacío y un arreglo con
+	 * enteros comparables
+	 */
+	System.out.println("\nLos arreglos que vamos a utilizar para las pruebas:");
 	System.out.println("\nParámetro null: " + Arreglo.construyeCadenaDeArreglo(null));
 	System.out.println("Arreglo vacío: "+ Arreglo.construyeCadenaDeArreglo(arregloVacio));
 	System.out.println("Arreglo de enteros: " + Arreglo.construyeCadenaDeArreglo(arregloEnteros) + "\n");
-	
+
+	/* Comenzamos las pruebas para el método creaSubArregloDe( ) mediante null, un arreglo vacío y un arreglo
+	 * con enteros comparables
+	 */
+	System.out.println("Pruebas para el método creaSubArreglo:\n");
 	try {
 	    Arreglo.creaSubArregloDe(null, 4, 1);
 	} catch(Exception excepcion) {
@@ -59,11 +78,16 @@ public class PruebaArreglo {
 	    System.out.println("Excepción por poner los extremos del sub-arreglo a crear al revés\n");
 	}
 
-	try {
-	    System.out.println("Sub-arreglo que comienza en el índice 4 y termina en ese mismo índice\n");
-	    Arreglo.creaSubArregloDe(arregloEnteros, 4, 4);
-	} catch(Exception excepcion) {
-	    System.out.println("Algo no contemplado sucedió, revisa el código\n");
-	}
+	System.out.println("Sub-arreglo que comienza en el índice 2 y termina en ese mismo índice:");
+	subArreglo =  Arreglo.creaSubArregloDe(arregloEnteros, 2, 2);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
+
+	System.out.println("Sub-arreglo que comienza en el índice 0 y termina en el índice 1:");
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 0, 1);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
+
+	System.out.println("Sub-arreglo que comienza en el índice 1 y termina en el índice 3:");
+	subArreglo = Arreglo.creaSubArregloDe(arregloEnteros, 1, 3);
+	System.out.println("El sub-arreglo es: " + Arreglo.construyeCadenaDeArreglo(subArreglo) + "\n");
     }
 }
