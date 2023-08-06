@@ -33,32 +33,58 @@ public class Arreglo {
 	return 0;
     }
 
-    public static <T extends Comparable<T>> T[ ] creaSubArregloDe(T[ ] arreglo, int indiceInferior,
+    /**
+     * Este método crea un sub-arreglo del arreglo parámetro. Los elementos guardados no son una copia de los del
+     * arreglo original
+     * @param arreglo Es el arreglo del cual se obtnedrá el sub-arreglo deseado
+     * @param indiceInferior Es el índice del arreglo parámetro a partir del cual se tomará su elemento para que
+     * sea el primer elemento del sub-arreglo a crear
+     * @param indiceSuperior Es el índice del arreglo parámetro del cual se tomará su elemento para que sea el
+     * último elemento del sub-arreglo a crear
+     * @return Si el arreglo parámetro no es null y si los índices superior e inferior tienen sentido, entonces
+     * obtenemos un sub-arreglo del arreglo parḿaetro restringido a esos índices
+     */
+    public static <T extends Comparable<T>> Comparable[ ] creaSubArregloDe(T[ ] arreglo, int indiceInferior,
 								 int indiceSuperior)	
 	throws Exception {
-	Comparable[ ] subArreglo;	
-	int longitudDeSubArreglo;
+	Comparable[ ] subArreglo; // En esta variable se construirá el sub-arreglo a devolver	
+	int longitudDeSubArreglo; // En esta variable se guardará la longitud del sub-arreglo a devolver
 
+	// Si el primer argumento es null, lanzamos una excepción
 	if(arreglo == null) {
 	    throw new Exception("Null no debe ser el primer parámetro");
 	}
 
+	/* Si el arreglo parámetro no es null y alguno de los índices parámetros están fuera del rango de los
+	 * índices del arreglo, lanzamos una excepción
+	 */
 	if(indiceInferior < 0 || indiceSuperior >= arreglo.length) {
 	    throw new Exception("Alguno de los índices límites está fuera del rango del arreglo");
 	}
-	
+
+	/* Si el arreglo parámetro no es null y si los índices de restricción están al revés, entonces lanzamos una
+	 * excepción
+	 */
 	if(indiceInferior > indiceSuperior) {
 	    throw new Exception("El índice inferior debe ser menor o igual que el indice superior");
 	}
 
-	longitudDeSubArreglo = 1 + indiceSuperior - indiceInferior;
-	subArreglo = new Comparable[longitudDeSubArreglo];
+	/* Si el arreglo parámetro no es null y si los índices de restricción tienen sentido en su orden, procedemos
+	 * a crear el sub-arreglo
+	 */
 
+	// Definimos la longitud del sub-arreglo que será devuelto
+	longitudDeSubArreglo = 1 + indiceSuperior - indiceInferior; 
+	subArreglo = new Comparable[longitudDeSubArreglo]; // Creamos el sub-arreglo que será devuelto
+
+	/* Guardamos los elementos del arreglo parámetro que van del primer índice de restricción al segundo índice
+	 * de restricción
+	 */
 	for(int i = 0; i < longitudDeSubArreglo; i++) {
 	    subArreglo[i] = arreglo[indiceInferior + i];
 	}
 
-	return (T[ ]) subArreglo;	
+	return subArreglo;	
     }
 
     /**
@@ -67,9 +93,9 @@ public class Arreglo {
      * @return Si el parámetro no es null, devuelve una cadena en el cual se indica el
      * contenido del arreglo. En caso contrario, solamente se devuelve la cadena "null"
      */
-    public static <T extends Comparable<T>> String construyeCadenaDeArreglo(T[ ] arreglo) {
+    public static <T> String construyeCadenaDeArreglo(T[ ] arreglo) {
 	/* En esta variable se construirá la cadena que indica el contenido del parámetro,
-	 * si el parémetro no es null. En caso contrario, devolveremos la cadena "null"
+	 * si el parámetro no es null. En caso contrario, devolveremos la cadena "null"
 	 */
 	String cadenaResultante = "null";
 
