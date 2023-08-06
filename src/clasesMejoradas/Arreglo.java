@@ -12,8 +12,24 @@ import java.util.Comparator;
  */
 public class Arreglo {
     /**
-     * Este método lleva a cabo una búsqueda binaria sobre el arreglo parámetro
-     * @param arreglo Es el arreglo en el cual se hará la búsqieda binaria
+     * Este método lleva a cabo una búsqueda binaria sobre un arreglo parámetro previamente ordenado
+     * @param arreglo Es el arreglo previamente ordenado al cual le haremos una búsqueda binaria
+     * @param elemento Es el elemento que buscaremos en el arreglo por medio de una búsqueda binaria
+     * @return Si el elemento se encuentra en el arreglo, obtenemos un índice de este arreglo tal que
+     * guarda el elemento buscado. En caso contrario, devuelve -1
+     */
+    public static <T extends Comparable<T>> int busquedaBinaria(T[ ] arreglo, T elemento) {
+	/* Aplicamos la sobrecarga del método busquedaBinaria( ), en el cual para el método compare( ) se
+	 * utiliza el código de la lambda presentada como tercer parámetro
+	 */
+	return busquedaBinaria(arreglo, elemento, (objeto1, objeto2) -> objeto1.compareTo(objeto2));
+    }
+    
+    /**
+     * Este método lleva a cabo una búsqueda binaria sobre el arreglo parámetro. Es importante que el arreglo
+     * parámetro tenga a sus elementos ordenados
+     * @param arreglo Es el arreglo en el cual se hará la búsqueda binaria. Este arreglo debe tener sus
+     * elementos ordenados
      * @param elemento Es el elemento que se bsucará en el arreglo por medio de una búsqueda binaria
      * @param comparador Este parámetro permite llevar a cabo comparaciones dentro del arreglo cuando
      * se hace la búsqueda binaria
