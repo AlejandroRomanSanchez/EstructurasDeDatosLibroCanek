@@ -11,6 +11,49 @@ import java.util.Comparator;
  * @since Libro de Canek
  */
 public class Arreglo {
+    public static <T> void intercambiaLosIndiceDe(T[ ] arreglo, int indice1, int indice2) {
+	T elementoAuxiliar;
+	int longitudDeArreglo;
+
+	if(arreglo == null) {
+	    throw new NullPointerException("El primer parámetro ingresado es un null");
+	}
+
+	longitudDeArreglo = arreglo.length;
+
+	
+    }
+
+    /**
+     * Este método verifica si el índice parámetro está en el rango de índices del arreglo parámetro
+     * @param arreglo El arreglo del que vamos a verificar si tiene al índice parámetro en su rango
+     * @param indice Es el índice que verificaremos si está en el rango del arreglo parámetro
+     * @return Si el índice está en el rango del arreglo, se devuelve true. En caso contrario, se
+     * devuelve false
+     */
+    public static <T> boolean estaEnElRango(T[ ] arreglo, int indice) {
+	/* En esta variable se guardará true si el índice está en el arreglo. En caso contrario, se devuelve
+	 * false
+	 */
+	boolean resultadoBooleano = false; 
+	int longitudDeArreglo; // Esta variable guardará la longitud del arreglo, si éste no es null
+
+	// Si al primer parámetro es null, se lanza una excepción
+	if(arreglo == null) {
+	    throw new NullPointerException("El primer parámetro ingresado es null");
+	}
+
+	// Si el primer parámetro no es null, entonces podemos obtener la longitud del arreglo parámetro
+	longitudDeArreglo = arreglo.length;
+
+	// Si el índice está en el rango del arreglo, vamos a devovler true. En caso contrario, false
+	if(0 <= indice && indice < longitudDeArreglo) {
+	    resultadoBooleano = true;
+	}
+
+	return resultadoBooleano;
+    }
+    
     /**
      * Este método lleva a cabo una búsqueda binaria sobre un arreglo parámetro previamente ordenado
      * @param arreglo Es el arreglo previamente ordenado al cual le haremos una búsqueda binaria
