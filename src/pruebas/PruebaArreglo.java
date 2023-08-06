@@ -97,7 +97,24 @@ public class PruebaArreglo {
 	for(int i = 0; i < enterosOrdenados.length; i++) {
 	    elementoABuscar = enterosOrdenados[i];
 	    System.out.println("Índice que guarda el número " + elementoABuscar + " en el arreglo ordenado: "
-			       + Arreglo.busquedaBinaria(enterosOrdenados, elementoABuscar));
+			       + Arreglo.busquedaBinaria(enterosOrdenados, elementoABuscar)+ "\n");
+	}
+
+	// Comienzan las pruebas para el método estaEnElRango( )
+	System.out.println("Pruebas para el método estaEnElRango( )");
+	System.out.println("El número -3 es índice de " + cadenaDeArregloOrdenado + " : "
+			   + Arreglo.estaEnElRango(enterosOrdenados, -3));
+	
+	System.out.println("El número 4 es índice de " + cadenaDeArregloOrdenado + " : "
+			   + Arreglo.estaEnElRango(enterosOrdenados, 4));
+
+	System.out.println("El número 20 es índice de " + cadenaDeArregloOrdenado + " : "
+			   + Arreglo.estaEnElRango(enterosOrdenados, 20));
+
+	try {
+	    Arreglo.estaEnElRango(null, 7);
+	} catch(NullPointerException excepcion) {
+	    System.out.println("Excepción por ingresar a null como primer parámetro\n");
 	}
     }
 }
