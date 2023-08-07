@@ -11,17 +11,42 @@ import java.util.Comparator;
  * @since Libro de Canek
  */
 public class Arreglo {
-    public static <T> void intercambiaLosIndiceDe(T[ ] arreglo, int indice1, int indice2) {
+    /**
+     * Este método intercambia los elementos correspondientes a los índices parámetros del arreglo
+     * @param arreglo Es el arreglodel cual intercambiaremos índices
+     * @param indice1 Un índice del arreglo a ser intercambiado
+     * @param indice2 Un índice del arreglo a ser intercambiado
+     */
+    public static <T> void intercambiaLosIndicesDe(T[ ] arreglo, int indice1, int indice2) {
+	/* En esta variable guardaremos el elemento que se encuentra en el indice1 para que no sea eliminado de
+	 * la memoria, y seamos capaces de llevarlo a indice2
+	 */
 	T elementoAuxiliar;
-	int longitudDeArreglo;
+	// Esta vairable nos indica si indice1 está en el rango de índices del arreglo
+	boolean indice1EstaEnElRango = Arreglo.estaEnElRango(arreglo, indice1);
+	// Esta variable nos indica si indice2 está en el rango de índices del arreglo
+	boolean indice2EstaEnElRango = Arreglo.estaEnElRango(arreglo, indice2);
 
+	// Si el primer parámetro es null, lanzamos una excepción
 	if(arreglo == null) {
 	    throw new NullPointerException("El primer parámetro ingresado es un null");
+	}       
+
+	// Si alguno de los dos índices ingresados está fuera del rango de índices del arreglo, no hacemos nada
+	if(indice1EstaEnElRango == false || indice2EstaEnElRango == false) {
+	    return;
 	}
 
-	longitudDeArreglo = arreglo.length;
+	// Si los dos índices ingresados están en el rango de índices de arreglo, procedemos a lo siguiente:
 
-	
+	/* Guardamos el elemento de arreglo cuya posición es indice1 en la variable elementoAuxiliar, para que
+	 * que no se borre de la memoria y podamos ser capaces de moverlo a la posición indice2 de arreglo
+	 */
+	elementoAuxiliar = arreglo[indice1];
+	// Movemos el elemento de arreglo cuya posición es indice2 a la posición indice1
+	arreglo[indice1] = arreglo[indice2];
+	// El elemento original que estaba en indice1 lo movemos a la posición indice2
+	arreglo[indice2] = elementoAuxiliar; 
     }
 
     /**
