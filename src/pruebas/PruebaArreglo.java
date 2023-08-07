@@ -116,5 +116,26 @@ public class PruebaArreglo {
 	} catch(NullPointerException excepcion) {
 	    System.out.println("Excepción por ingresar a null como primer parámetro\n");
 	}
+
+	// Comienzan las pruebas para el método intercambiaLosIndicesDe( )
+	System.out.println("Pruebas para el método intercambiaLosIndicesDe( )");
+
+	try {
+	    Arreglo.intercambiaLosIndicesDe(null, 6, 19);
+	} catch(NullPointerException excepcion) {
+	    System.out.println("Excepción por ingresar null como primer parámetro");
+	}
+
+	System.out.println("Intercambia los índices 6 y 19 del arreglo vacío");
+	Arreglo.intercambiaLosIndicesDe(arregloVacio, 6, 19);
+	System.out.println(Arreglo.construyeCadenaDeArreglo(arregloVacio));
+
+	System.out.println("Intercambia los índices 6 y 19 del arreglo ordenado con enteros");
+	Arreglo.intercambiaLosIndicesDe(enterosOrdenados, 6, 19);
+	System.out.println(Arreglo.construyeCadenaDeArreglo(enterosOrdenados));
+
+	System.out.println("Intercambia los índices 6 y 1 del arreglo ordenado con enteros");
+	Arreglo.intercambiaLosIndicesDe(enterosOrdenados, 6, 1);
+	System.out.println(Arreglo.construyeCadenaDeArreglo(enterosOrdenados)+ "\n");
     }
 }
