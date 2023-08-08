@@ -1,6 +1,7 @@
 package pruebas;
 
 import clasesMejoradas.Arreglo;
+import java.lang.Comparable;
 import java.util.Comparator;
 
 /**
@@ -19,7 +20,7 @@ public class PruebaArreglo {
 	// Arreglo de enteros que usaremos para las pruebas
 	Integer[ ] arregloEnteros = {4, 0, 2, 1, 5};
 	// En esta variable se guardarán los sub-arreglos creados conforme vayan siendo creados
-	Object[ ] subArreglo;
+	Object[ ] subArreglo;	
 	
 	/* Comienza pruebas para el método imprimeArreglo( ) aplicado a null, el arreglo vacío y un arreglo con
 	 * enteros comparables
@@ -137,5 +138,27 @@ public class PruebaArreglo {
 	System.out.println("Intercambia los índices 6 y 1 del arreglo ordenado con enteros");
 	Arreglo.intercambiaLosIndicesDe(enterosOrdenados, 6, 1);
 	System.out.println(Arreglo.construyeCadenaDeArreglo(enterosOrdenados)+ "\n");
+
+	// Comienzan las pruebas para el método quickSort(arreglo, indiceInferior, indiceSuperior, comparador)
+	System.out.println("Pruebas para el método quickSort(arreglo, indiceInferior, indiceSuperior, "
+			   + "comparador)");
+	// Prueba de quickSort para un arreglo vacío
+	System.out.println("Estado inicial del arreglo: "
+			   + Arreglo.construyeCadenaDeArreglo(arregloVacio));
+	Arreglo.quickSort(arregloVacio);
+	System.out.println("Ahora el arreglo sin previo orden ahora es: "
+			   + Arreglo.construyeCadenaDeArreglo(arregloVacio) + "\n");
+	// Prueba de quickSort para un arreglo no vacío
+	System.out.println("Estado inicial del arreglo "
+			   + Arreglo.construyeCadenaDeArreglo(arregloEnteros));
+	Arreglo.quickSort(arregloEnteros);
+	System.out.println("Ahora el arreglo sin previo orden es: "
+			   + Arreglo.construyeCadenaDeArreglo(arregloEnteros) + "\n");
+	// Prueba de quickSort para un arreglo no vacío
+	System.out.println("Estado inicial del arreglo: "
+			   + Arreglo.construyeCadenaDeArreglo(enterosOrdenados));
+	Arreglo.quickSort(enterosOrdenados);
+	System.out.println("Ahora el arreglo sin previo orden ahora es: "
+			   + Arreglo.construyeCadenaDeArreglo(enterosOrdenados));		
     }
 }
