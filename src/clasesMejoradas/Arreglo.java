@@ -12,6 +12,20 @@ import java.util.Comparator;
  */
 public class Arreglo {
     /**
+     * Este método ordena el arreglo parámetro por medio del algoritmo quickSort. Los elementos de este arreglo
+     * deben implementar la interfaz Comaprable<T>
+     * @param arreglo Es el arreglo de elementos que implemento la interfaz Comparable<T> que será ordenada
+     * por medio del algoritmo quicksort
+     */
+    public static <T extends Comparable<T>> void quickSort(T[ ] arreglo) {
+	/* solamente aplicamos la sobre-escritura del método quickSort con el arreglo parámetro de este método
+	 * como el primer parámetro y se toma una lambda para indicar que donde aparezca el método compare, se
+	 * tomará el código de la lambda parámetro
+	 */
+	quickSort(arreglo, (objeto1, objeto2) -> objeto1.compareTo(objeto2));
+    }
+    
+    /**
      * Este método aplica el algoritmo quickSort para ordenar al arreglo parámetro. El orden que se tomarán en
      * cuenta para ordenar los elementos de este arreglo está determinado por el parámetro comparador
      * @param arreglo Es el arreglo que será ordenado por medio del algoritmo quickSort
