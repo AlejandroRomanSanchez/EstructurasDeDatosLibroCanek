@@ -12,6 +12,29 @@ import java.util.Comparator;
  */
 public class Arreglo {
     /**
+     * Este método aplica el algoritmo quickSort para ordenar al arreglo parámetro. El orden que se tomarán en
+     * cuenta para ordenar los elementos de este arreglo está determinado por el parámetro comparador
+     * @param arreglo Es el arreglo que será ordenado por medio del algoritmo quickSort
+     * @param comparador Este parámetro determina el orden que tomarán los elementos del arreglo parámetro
+     * para que puedan ser ordenados por medio del algoritmo quickSort
+     */
+    public static <T> void quickSort(T[ ] arreglo, Comparator<T> comparador) {
+	int longitudDeArreglo; // Esta variable guardará la longitud del arreglo parámetro
+
+	// Si al primer parámetro es null, entonces lanzamos una excepción
+	if(arreglo == null) {
+	    throw new NullPointerException("El primer parámetro ingresado fue null");
+	}
+	// Como el primer parámetro es un arreglo, podemos asignar la longitud de éste a una variable
+	longitudDeArreglo = arreglo.length;
+
+	/* Aplicamos el método sobrecargado de quickSort, en el cual el índice inferior es 0, mientras que el
+	 * superior es el último índice del arreglo parámetro
+	 */
+	Arreglo.quickSort(arreglo, 0, longitudDeArreglo - 1, comparador); 
+    }
+    
+    /**
      * Este método ordena un sub-arreglo del arreglo parámetro por medio del algoritmo quickSort. Este
      * sub-arreglo está determinado por los índices parámetros. Además, los elementos del sub-arreglo serán
      * ordenados de acuerdo a un Comparator del mismo tipo que el arreglo
