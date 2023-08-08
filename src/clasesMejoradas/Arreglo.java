@@ -153,25 +153,52 @@ public class Arreglo {
 	Arreglo.quickSort(arreglo, iteradorInferior + 1, indiceSuperior, comparador);
     }
 
+    /**
+     * Este método ordena al arreglo parámetro por medio del algoritmo selectionSort, los elementos de este
+     * arreglo deben ser comparados en términos de un comparador de Comparator
+     * @param arreglo Es el arreglo que será ordenado por medio del algoritmo selectionSort, los elementos de
+     * este arreglo deben ser comparados en término de un comparador de Comaprator
+     * @param comparador Este parámetro permite que los elementos del arreglo parámetro se puedan comparar entre
+     * ellos
+     */
     public static <T> void selectionSort(T[ ] arreglo, Comparator<T> comparador) {
-	int longitudDeArreglo;
-	int indiceIntercambiableEnLaIteracionActual;
+	int longitudDeArreglo; // Esta variable hará referencia a la longitud del arreglo parámetro
+	/* Se hará una iteración sobre los índices del arreglo parámetro, al final de cada iteración se hará
+	 * realizará un intercambia entre el elemento que le corresponde al estado de este índice en el momento
+	 * con el índice sobre el cual se está iterando en ese momento
+	 */
+	int indiceIntercambiableEnLaIteracionActual; 
 
+	// Si el primer parámetro es null, lanzamos una excepción
 	if(arreglo == null) {
 	    throw new NullPointerException("El primer parámetro ingresado es null");
 	}
-
+	// Como el primer parámetro no es null, podemos obtener la longitud del arreglo parámetro
 	longitudDeArreglo = arreglo.length;
-	
+
+	// Iteramos sobre cada uno de los índices del arreglo parámetro.
 	for(int i = 0; i < longitudDeArreglo; i++) {
+	    /* El índice que será intercambiable al final de esta iteración tendrá un valor inicial igual al
+	     * índice sobre el cual se está iterando
+	     */
 	    indiceIntercambiableEnLaIteracionActual = i;
 
+	    /* Ahora iteramos sobre el sub-arreglo correspondiente a una unidad a la derecha del índice sobre
+	     * el cual estamos iterando hasta al final del arreglo parámetro
+	     */
 	    for(int j = i + 1; j < longitudDeArreglo; j++) {
+		/* Si el índice de iteración correspondiente a este ciclo for anidado tiene un elemento
+		 * guardado menor que el elemento que se encuentra en el índice que se va a intercambiar al
+		 * final de la iteración del ciclo for externo, entonces hacemos que ahora el índice a
+		 * intercambiar sea el índice de iteración del ciclo for interno.
+		 */
 		if(comparador.compare(arreglo[j], arreglo[indiceIntercambiableEnLaIteracionActual]) < 0) {
 		    indiceIntercambiableEnLaIteracionActual = j;
 		}
 	    }
-
+	    /* Intercambiamos los elementos del índice de iteración actual del ciclo for externo y del índice
+	     * actual intercambiable
+	     */
 	    Arreglo.intercambiaLosIndicesDe(arreglo, i, indiceIntercambiableEnLaIteracionActual);
 	}
     }
