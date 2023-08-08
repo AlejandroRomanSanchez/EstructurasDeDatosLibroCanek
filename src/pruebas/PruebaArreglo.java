@@ -19,6 +19,9 @@ public class PruebaArreglo {
 	Integer[ ] arregloVacio = { }; // Un arreglo sin elementos que usaremos para las pruebas
 	// Arreglo de enteros que usaremos para las pruebas
 	Integer[ ] arregloEnteros = {4, 0, 2, 1, 5};
+	// Esta arreglo servirá para ordenarlo por medio del método selectionSort
+	Integer[ ] arregloParaSelectionSort = {21, 8, 8, 38, 43, 17, 26, 97, 40, 27, 6, 34, 76, 86, 66, 81, 75,
+					       95, 51, 52};
 	// En esta variable se guardarán los sub-arreglos creados conforme vayan siendo creados
 	Object[ ] subArreglo;	
 	
@@ -159,6 +162,15 @@ public class PruebaArreglo {
 			   + Arreglo.construyeCadenaDeArreglo(enterosOrdenados));
 	Arreglo.quickSort(enterosOrdenados);
 	System.out.println("Ahora el arreglo sin previo orden ahora es: "
-			   + Arreglo.construyeCadenaDeArreglo(enterosOrdenados));		
+			   + Arreglo.construyeCadenaDeArreglo(enterosOrdenados) + "\n");
+
+	// Comienzan las pruebas para selectionSort
+	System.out.println("Pruebas para selectionSort");
+	
+	System.out.println("Estado inicial del arreglo: "
+			   + Arreglo.construyeCadenaDeArreglo(arregloParaSelectionSort));
+	Arreglo.quickSort(arregloParaSelectionSort, (a, b) -> a.compareTo(b));
+	System.out.println("El mismo arreglo ahora ordenado por selectionSort: "
+			   + Arreglo.construyeCadenaDeArreglo(arregloParaSelectionSort) + "\n");
     }
 }
