@@ -154,6 +154,20 @@ public class Arreglo {
     }
 
     /**
+     * Este método ordena un arreglo por medio del algoritmo slectionSort. Los elementos del arreglo deben
+     * implementar la interfaz Comaprable<T>
+     * @param arreglo El arreglo que será ordenado por medio del algoritmo selectionSort. Los elementos de este
+     * arreglo deben implementar la interfaz Comparable<T>
+     */
+    public static <T extends Comparable<T>> void selectionSort(T[ ] arreglo) {
+	/* Solamente aplicamos el método sobrecargado selectionSort con el mismo arreglo que tenemos en el
+	 * parámetro, y cada vez que aparezca el método compare en el código del método sobrecargado, se
+	 * aplicará el código de la lambda que se encuentra en el segundo parámetro
+	 */
+	selectionSort(arreglo, (objeto1, objeto2) -> objeto1.compareTo(objeto2));
+    }
+    
+    /**
      * Este método ordena al arreglo parámetro por medio del algoritmo selectionSort, los elementos de este
      * arreglo deben ser comparados en términos de un comparador de Comparator
      * @param arreglo Es el arreglo que será ordenado por medio del algoritmo selectionSort, los elementos de
