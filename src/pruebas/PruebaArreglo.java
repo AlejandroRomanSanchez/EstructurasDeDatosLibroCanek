@@ -169,7 +169,7 @@ public class PruebaArreglo {
 	
 	System.out.println("Estado inicial del arreglo: "
 			   + Arreglo.construyeCadenaDeArreglo(arregloParaSelectionSort));
-	Arreglo.quickSort(arregloParaSelectionSort, (a, b) -> a.compareTo(b));
+	Arreglo.quickSort(arregloParaSelectionSort);
 	System.out.println("El mismo arreglo ahora ordenado por selectionSort: "
 			   + Arreglo.construyeCadenaDeArreglo(arregloParaSelectionSort) + "\n");
     }
