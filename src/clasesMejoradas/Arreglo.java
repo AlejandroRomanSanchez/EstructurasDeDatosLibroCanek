@@ -12,6 +12,111 @@ import java.util.Comparator;
  */
 public class Arreglo {
     /**
+     * Este método ordena un sub-arreglo del arreglo parámetro por medio del algoritmo quickSort. Este
+     * sub-arreglo está determinado por los índices parámetros. Además, los elementos del sub-arreglo serán
+     * ordenados de acuerdo a un Comparator del mismo tipo que el arreglo
+     * @param arreglo Es el arreglo que será ordenado por medio del algoritmo quickSort
+     * @param indiceInferior Es el índice inferior del sub-arreglo que será tomado del arreglo parámetro para
+     * ser ordenado
+     * @param indiceSuperior Es el índice superior del sub-arreglo que será tomado del arreglo parámetro para
+     * ser ordenado
+     * @param comparador Los elementos del sub-arreglo serán ordenados de acuerdo al orden proporcionado por
+     * este parámetro
+     */
+    private static <T> void quickSort(T[ ] arreglo, int indiceInferior, int indiceSuperior,
+				     Comparator<T> comparador) {
+	/* Este iterador irá recorriendo el sub-arreglo, en ocasiones de manera ascendente y en otras
+	 * descendente, comenzando desde el índice una unidad a la derecha del índice inferior del
+	 * sub-arreglo
+	 */
+	int iteradorInferior;
+	/* Este iterador irá recorriendo el sub-arreglo de manera descendente, comenzando desde el último
+	 * índice del sub-arreglo
+	 */
+	int iteradorSuperior;
+	// Esta variable guardará el elemento del sub-arreglo actual correspondiente al iterador inferior
+	T elementoEnIteradorInferior;
+	// Esta variable guardará el elemento del sub-arreglo actual correspondiente al iterador superior
+	T elementoEnIteradorSuperior;
+	// Esta variable siempre guardará el elemento del índice inferior del sub-arreglo
+	T elementoEnIndiceInferior;
+
+	// Si el primer parámetro es null, entonces lanzamos una excepción
+	if(arreglo == null) {
+	    throw new NullPointerException("El primer parámetro ingresado es null");
+	}
+	
+	/* Si los índices extremos del sub-arreglo son iguales o están al revés en la lista de parámetros,
+	 * entonces el sub-arreglo solamente tiene un elemento o es vacío; por lo que este método no hace nada
+	 */
+	if(indiceSuperior <= indiceInferior) {
+	    return;
+	}
+
+	/* Como el arreglo parámetro no es null ni es vacío ni tiene un único elemento, entonces tiene sentido
+	 * hacer las siguientes asignaciones.
+	 */
+	// El iterador inferior comienza una unidad a la derecha del índice inferior del sub-arreglo
+	iteradorInferior = indiceInferior + 1; 
+	iteradorSuperior = indiceSuperior; // El iterador superior comienza en el último índice del sub-arreglo
+	// Para facilitar la lectura, asignamos los siguientes elementos del arreglo con sus respectivos índices
+	elementoEnIndiceInferior = arreglo[indiceInferior];
+	elementoEnIteradorInferior = arreglo[iteradorInferior];
+	elementoEnIteradorSuperior = arreglo[iteradorSuperior];
+
+	/* Los dos iteradores irán recorriendo el sub-arreglo según el siguiente ciclo while, siempre y cuando
+	 * el iterador inferior actual sea menor que el iterador superior actual
+	 */
+	while(iteradorInferior < iteradorSuperior) {
+	    if(comparador.compare(elementoEnIteradorInferior, elementoEnIndiceInferior) > 0
+	       && comparador.compare(elementoEnIteradorSuperior, elementoEnIndiceInferior) <= 0) {
+		/* Si el elemento del iterador inferior es mayor que el elemento del índice inferior y si el
+		 * elemento del iterador superior es menor o igual que el elemento del índice inferior, entonces
+		 * el iterador inferior se mueve una unidad a la derecha y el superior una unidad a la izquierda
+		 */
+		Arreglo.intercambiaLosIndicesDe(arreglo, iteradorInferior, iteradorSuperior);
+		iteradorInferior = iteradorInferior + 1;
+		iteradorSuperior = iteradorSuperior - 1;
+	    } else if(comparador.compare(elementoEnIteradorInferior, elementoEnIndiceInferior) <= 0) {
+		/* Si el elemento del iterador inferior es menor o igual que el elemento del índice inferior o
+		 * si el elemento del iterador superior es mayor que el elementos del índice inferior. Además,
+		 * si el elemento del iterador inferior es menor o igual que el elemento del índice inferior,
+		 * entonces recorremos el iterador inferior una unidad a la derecha
+		 */
+		iteradorInferior = iteradorInferior + 1;
+	    } else {
+		/* Si el elemento del iterador inferior es menor o igual que el elemento del índice inferior o
+		 * si el elemento del iterador superior es mayor que el elemento del índice inferior. Además, si
+		 * el elemento del iterador inferior es mayor que el elemento del índice inferior, recorremos el
+		 * iterador superior una unidad a la izquierda
+		 */
+		iteradorSuperior = iteradorSuperior - 1;
+	    }
+
+	    // Actualizamos los elementos que están en los iteradores actuales
+	    elementoEnIteradorInferior = arreglo[iteradorInferior];
+	    elementoEnIteradorSuperior = arreglo[iteradorSuperior];
+	}
+
+	/* Si el iterador inferior actual es mayor o igual que el iterador superior actual, verificamos si
+	 * el elemento del iterador inferior es mayor que el elemento del índice inferior. En caso de que esto
+	 * se cumpla, recorremos el iterador inferior una unidad a la izquierda
+	 */
+	if(comparador.compare(elementoEnIteradorInferior, elementoEnIndiceInferior) > 0) {
+	    iteradorInferior = iteradorInferior - 1;
+	}
+
+	// Intercambiamos los elementos que están el índice inferior del sub-arreglo con el iterador inferior
+	Arreglo.intercambiaLosIndicesDe(arreglo, indiceInferior, iteradorInferior);
+	/* Aplicamos quickSort para ordenar a los dos sub-arreglos del sub-arreglo que se obtienen de dividir
+	 * a este último con respecto al iterador inferior actual (este es el pivote). Estos dos sub-arreglos
+	 * nuevos no tienen al elemento guardado en el iterador inferior actual
+	 */
+	Arreglo.quickSort(arreglo, indiceInferior, iteradorInferior - 1, comparador);
+	Arreglo.quickSort(arreglo, iteradorInferior + 1, indiceSuperior, comparador);
+    }
+    
+    /**
      * Este método intercambia los elementos correspondientes a los índices parámetros del arreglo
      * @param arreglo Es el arreglodel cual intercambiaremos índices
      * @param indice1 Un índice del arreglo a ser intercambiado
