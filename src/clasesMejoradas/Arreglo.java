@@ -152,6 +152,29 @@ public class Arreglo {
 	Arreglo.quickSort(arreglo, indiceInferior, iteradorInferior - 1, comparador);
 	Arreglo.quickSort(arreglo, iteradorInferior + 1, indiceSuperior, comparador);
     }
+
+    public static <T> void selectionSort(T[ ] arreglo, Comparator<T> comparador) {
+	int longitudDeArreglo;
+	int indiceIntercambiableEnLaIteracionActual;
+
+	if(arreglo == null) {
+	    throw new NullPointerException("El primer parámetro ingresado es null");
+	}
+
+	longitudDeArreglo = arreglo.length;
+	
+	for(int i = 0; i < longitudDeArreglo; i++) {
+	    indiceIntercambiableEnLaIteracionActual = i;
+
+	    for(int j = i + 1; j < longitudDeArreglo; j++) {
+		if(comparador.compare(arreglo[j], arreglo[indiceIntercambiableEnLaIteracionActual]) < 0) {
+		    indiceIntercambiableEnLaIteracionActual = j;
+		}
+	    }
+
+	    Arreglo.intercambiaLosIndicesDe(arreglo, i, indiceIntercambiableEnLaIteracionActual);
+	}
+    }
     
     /**
      * Este método intercambia los elementos correspondientes a los índices parámetros del arreglo
